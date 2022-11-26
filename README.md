@@ -1,25 +1,28 @@
-# Мониторинг проектов
+# Projects
 
-Мониторинг Git-репозиториев Дизайн-кода Екатеринбурга
+List of Ekaterinburg Code projects updated in real-time.
+
+**[projects.ekaterinburg.dev](https://projects.ekaterinburg.dev)**
 
 
-## Настройка
+## Content
 
-Данные о проектах редактируются в [projects.json](https://github.dev/ekaterinburgdesign/dev-monitor/blob/master/projects.json)
+The project data is edited in the [projects.json](https://github.dev/ekaterinburgdev/projects)
 
 ```json
 [
     {
-        "title": "Название проекта",
-        "url": "https://link-to-project.ekaterinburg.design",
+        "title": "Project name",
+        "url": "https://link.ekaterinburg.dev",
         "icon": "icon.svg",
-        "git": "Репозиторий",
-        "vercel": "Проект на Vercel",
+        "git": "repo-name",
+        "vercel": "vercel-deployment-name",
         "links": [
             {
                 "name": "Figma",
                 "url": "https://figma.com/link-to-design"
-            }
+            },
+            ...
         ]
     },
     ...
@@ -27,19 +30,30 @@
 ```
 
 
-## Запуск
 
-В корне создать файл с переменными среды `.env.local` с [Access Token](https://github.com/settings/tokens) для GitHub со `scope` с доступом к `repo`
+## Development
+
+1. Add `.env.local` with [GitHub Access Token](https://github.com/settings/tokens) for GitHub with `scope` with access to `repo` permission
 ```
 GITHUB_TOKEN=<github-access-token>
 ```
 
-Установить зависимости
-```sh
-npm i
+2. Install [Node.js](https://nodejs.org/en/download/) and [pnpm](https://www.npmjs.com/package/pnpm#user-content-install)
+
+3. Install dependencies
+
+```
+pnpm i
 ```
 
-Запустить режим разработчика
-```sh
-npm run dev
+4. Run local server
+
 ```
+pnpm dev
+```
+
+## Tools
+
+- [Next.js](https://nextjs.org/)
+- [Vercel Serverless](https://vercel.com/)
+- [Oktokit](https://www.npmjs.com/package/octokit)
