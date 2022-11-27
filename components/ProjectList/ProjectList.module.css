@@ -14,19 +14,20 @@
 
 @media (min-width: 1600px) {
   .project-list {
-    columns: 4;
-    max-width: 1920px;
+    columns: 3;
+    max-width: 1600px;
     padding: 25px;
   }
 }
 
 .project-list__item {
+  display: inline-block;
+  width: 100%;
   padding: 12px 0;
-  break-inside: avoid;
 }
 
 @media (min-width: 991px) {
   .project-list__item {
-    padding: 25px;
+    padding: 16px;
   }
 }
