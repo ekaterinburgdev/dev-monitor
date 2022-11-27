@@ -32,7 +32,7 @@ function Home() {
     return (
         <>
             <Head>
-                <title>Проекты Кода Екатеринбурга</title>
+                <title>Ekaterinburg.dev Projects</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             </Head>
 

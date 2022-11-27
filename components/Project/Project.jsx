@@ -30,15 +30,15 @@ export default function Project({ title, icon, url, git, vercel, stats, slots, l
                     )}
                     &nbsp;&nbsp;
                     {stats === undefined ? (
-                        <>Загрузка...</>
+                        <>Loading...</>
                     ) : (
                         <>
                             <a href={`https://github.com/${projectsConfig.organization}/${git}/pulls`} target="_blank" rel="noreferrer" className={cx("project__meta-link")}>
-                                Ревью: {stats.pulls}
+                                Pull requests: {stats.pulls}
                             </a>
                             &nbsp;·&nbsp;
                             <a href={`https://github.com/${projectsConfig.organization}/${git}/issues`} target="_blank" rel="noreferrer" className={cx("project__meta-link")}>
-                                Задачи: {stats.issues}
+                                Issues: {stats.issues}
                             </a>
                         </>
                     )}
