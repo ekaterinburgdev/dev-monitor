@@ -1,7 +1,7 @@
 {
-  "name": "dev-monitor",
-  "version": "0.1.0",
-  "private": true,
+  "name": "projects",
+  "version": "1.0.0",
+  "homepage": "https://projects.ekaterinburg.dev/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

@@ -1,5 +1,4 @@
 import classNames from 'classnames/bind'
-import { useEffect, useState } from 'react';
 import styles from './Project.module.css'
 import TimeAgo from 'javascript-time-ago'
 import ru from 'javascript-time-ago/locale/ru'

@@ -1,15 +1,16 @@
-import { Octokit } from "octokit"
-
+import { Octokit } from 'octokit';
+import projectsConfig from '../../projects.config';
 
 export default async function handler(req, res) {
     const { repo, vercel } = req.query;
+    const owner = projectsConfig.organization;
 
     const octokit = new Octokit({
         auth: process.env.GITHUB_TOKEN
-    })
+    });
 
     const branches = await octokit.request('GET /repos/{owner}/{repo}/branches', {
-        owner: 'ekaterinburgdesign',
+        owner,
         repo,
         protected: false
     });
@@ -17,7 +18,7 @@ export default async function handler(req, res) {
     const slotsData = await Promise.all(
         branches.data.map(async ({ name, commit: lastCommit }) => {
             const commit = await octokit.request('GET /repos/{owner}/{repo}/commits/{ref}', {
-                owner: 'ekaterinburgdesign',
+                owner,
                 repo,
                 ref: lastCommit.sha
             });
@@ -31,7 +32,8 @@ export default async function handler(req, res) {
                 commitMessage: commit.data.commit.message,
                 commitAuthor: commit.data.committer?.login
             };
-        }));
+        })
+    );
 
     const sortedSlots = slotsData.sort((a, b) => {
         if (a.date > b.date) {
