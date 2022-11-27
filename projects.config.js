@@ -15,10 +15,10 @@ const projectsConfig = {
         },
         {
             title: 'Карта Дизайн-кода',
-            url: 'https://ekaterinburg.design/',
+            url: 'https://map.ekaterinburg.design/',
             icon: 'logo-site.svg',
             git: 'design-map',
-            vercel: 'edesign',
+            vercel: 'emap-ekbdev',
             links: [
                 { name: 'Figma', url: 'https://www.figma.com/file/VpUQ8aZanmAIbwlSt5UTKH/%F0%9F%9A%B2-ekaterinburg.design-Site?node-id=545%3A2' },
                 { name: 'CMS', url: 'https://www.notion.so/ekaterinburg/97690fa6b5ce4e0690bf1a61056c0c69' }
@@ -33,8 +33,8 @@ const projectsConfig = {
             links: [
                 { name: 'Figma', url: 'https://www.figma.com/file/Cqf3JxFmbWxLgzH0TI7PUG/%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D1%8B%D0%B5-%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%87%D0%BA%D0%B8' },
                 { name: 'API', url: 'https://atkishkin.gitbook.io/api-adresnye-tablichki/informaciya-po-tablichke' },
-                { name: 'Список улиц', url: 'https://github.com/ekaterinburgdesign/street-name-plates/blob/main/data/streets-lower.json' },
-                { name: 'Список исторических зданий', url: 'https://github.com/ekaterinburgdesign/street-name-plates/blob/main/data/hist-streets.json' },
+                { name: 'Список улиц', url: 'https://github.com/ekaterinburgdev/street-name-plates/blob/main/data/streets-lower.json' },
+                { name: 'Список исторических зданий', url: 'https://github.com/ekaterinburgdev/street-name-plates/blob/main/data/hist-streets.json' },
                 { name: 'ТЗ', url: 'https://miro.com/app/board/o9J_llO1eIc=/' },
                 { name: 'MVP', url: 'https://ekaterinburg.design/street-plates-generator' }
             ]
