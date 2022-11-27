@@ -42,7 +42,7 @@ const projectsConfig = {
         {
             title: 'Руководства по дизайну',
             url: 'https://guides.ekaterinburg.design/',
-            icon: 'logo-site.svg',
+            icon: 'logo-guides.svg',
             git: 'guides',
             vercel: 'eguides',
             links: [
@@ -53,7 +53,7 @@ const projectsConfig = {
         {
             title: 'Транспорт',
             url: 'https://transport.ekaterinburg.io/',
-            icon: '',
+            icon: 'logo-transport.svg',
             git: 'transport',
             vercel: 'ekbdev-transport',
             links: [
@@ -63,7 +63,7 @@ const projectsConfig = {
         {
             title: 'Инофкарта',
             url: 'https://map.ekaterinburg.dev/',
-            icon: '',
+            icon: 'logo-map.svg',
             git: 'map',
             vercel: 'ekbdev-map',
             links: [

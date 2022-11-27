@@ -16,7 +16,7 @@ The project data is edited in the [projects.config.js](https://github.dev/ekater
             title: 'Project name',
             url: 'https://link.ekaterinburg.dev',
             icon: 'icon.svg',
-            git: 'repo-name',
+            git: ['repo-name'], // Repositories groups (front-end, back-end, etc)
             vercel: 'vercel-deployment-domain',
             links: [
                 {
