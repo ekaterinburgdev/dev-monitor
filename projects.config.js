@@ -1,3 +1,4 @@
+/** @type {import("./types/projects-config").Config} */
 const projectsConfig = {
     organization: 'ekaterinburgdev',
     projects: [
