@@ -3,7 +3,7 @@ const projectsConfig = {
     organization: 'ekaterinburgdev',
     projects: [
         {
-            title: 'Сайт',
+            title: 'Сайт Дизайн-кода',
             url: 'https://ekaterinburg.design/',
             icon: 'logo-site.svg',
             git: 'ekaterinburg.design',
@@ -14,20 +14,20 @@ const projectsConfig = {
             ]
         },
         {
-            title: 'Руководства',
-            url: 'https://guides.ekaterinburg.design/',
-            icon: '',
-            git: 'guides',
-            vercel: 'eguides',
+            title: 'Карта Дизайн-кода',
+            url: 'https://ekaterinburg.design/',
+            icon: 'logo-site.svg',
+            git: 'design-map',
+            vercel: 'edesign',
             links: [
-                { name: 'Figma', url: 'https://www.figma.com/file/VpUQ8aZanmAIbwlSt5UTKH/%F0%9F%9A%B2-ekaterinburg.design-Site?node-id=2301%3A142' },
-                { name: 'API', url: 'https://1862987759-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F5kt6e2DWH50tt51DoJIw%2Fuploads%2FQmH1TLD6G9HucQm0hY9H%2FDesignCode--guides.postman_collection.json?alt=media&token=23c55609-491c-4808-82aa-4517b8538c0b' }
+                { name: 'Figma', url: 'https://www.figma.com/file/VpUQ8aZanmAIbwlSt5UTKH/%F0%9F%9A%B2-ekaterinburg.design-Site?node-id=545%3A2' },
+                { name: 'CMS', url: 'https://www.notion.so/ekaterinburg/97690fa6b5ce4e0690bf1a61056c0c69' }
             ]
         },
         {
             title: 'Адресные таблички',
             url: 'https://eplates.vercel.app/',
-            icon: '',
+            icon: 'logo-site.svg',
             git: 'street-name-plates',
             vercel: 'eplates',
             links: [
@@ -40,13 +40,39 @@ const projectsConfig = {
             ]
         },
         {
+            title: 'Руководства по дизайну',
+            url: 'https://guides.ekaterinburg.design/',
+            icon: 'logo-site.svg',
+            git: 'guides',
+            vercel: 'eguides',
+            links: [
+                { name: 'Figma', url: 'https://www.figma.com/file/VpUQ8aZanmAIbwlSt5UTKH/%F0%9F%9A%B2-ekaterinburg.design-Site?node-id=2301%3A142' },
+                { name: 'API', url: 'https://1862987759-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F5kt6e2DWH50tt51DoJIw%2Fuploads%2FQmH1TLD6G9HucQm0hY9H%2FDesignCode--guides.postman_collection.json?alt=media&token=23c55609-491c-4808-82aa-4517b8538c0b' }
+            ]
+        },
+        {
             title: 'Транспорт',
-            url: 'https://eplates.vercel.app/',
+            url: 'https://transport.ekaterinburg.io/',
             icon: '',
             git: 'transport',
             vercel: 'ekbdev-transport',
-            links: []
-        }
+            links: [
+                { name: 'Figma', url: 'https://www.figma.com/file/VpUQ8aZanmAIbwlSt5UTKH/%F0%9F%9A%B2-Ekaterinburg.design?node-id=3044%3A731&t=cc1nK5kKf3zfAcmO-1' },
+            ]
+        },
+        {
+            title: 'Инофкарта',
+            url: 'https://map.ekaterinburg.dev/',
+            icon: '',
+            git: 'map',
+            vercel: 'ekbdev-map',
+            links: [
+                { name: 'Figma', url: 'https://www.figma.com/file/VpUQ8aZanmAIbwlSt5UTKH/%F0%9F%9A%B2-Ekaterinburg.design?node-id=3460%3A2199&t=cc1nK5kKf3zfAcmO-1' },
+                { name: 'CMS', url: 'http://51.178.191.76:1337/' },
+                { name: 'API', url: 'http://51.178.191.76:1337/documentation/v1.0.0' },
+                { name: 'Документация Leaflet', url: 'https://map-docs.vercel.app/' }
+            ]
+        },
     ]
 };
 
