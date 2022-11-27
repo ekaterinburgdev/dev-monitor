@@ -4,36 +4,37 @@ List of Ekaterinburg Code projects updated in real-time.
 
 **[projects.ekaterinburg.dev](https://projects.ekaterinburg.dev)**
 
-
 ## Content
 
-The project data is edited in the [projects.json](https://github.dev/ekaterinburgdev/projects)
+The project data is edited in the [projects.config.js](https://github.dev/ekaterinburgdev/projects/blob/main/projects.config.js)
 
-```json
-[
-    {
-        "title": "Project name",
-        "url": "https://link.ekaterinburg.dev",
-        "icon": "icon.svg",
-        "git": "repo-name",
-        "vercel": "vercel-deployment-name",
-        "links": [
-            {
-                "name": "Figma",
-                "url": "https://figma.com/link-to-design"
-            },
-            ...
-        ]
-    },
-    ...
-]
+```js
+{
+    organization: 'ekaterinburgdev',
+    projects: [
+        {
+            title: 'Project name',
+            url: 'https://link.ekaterinburg.dev',
+            icon: 'icon.svg',
+            git: 'repo-name',
+            vercel: 'vercel-deployment-domain',
+            links: [
+                {
+                    'name': 'Figma',
+                    'url': 'https://figma.com/link-to-design'
+                },
+                ...
+            ]
+        },
+        ...
+    ]
+}
 ```
-
-
 
 ## Development
 
 1. Add `.env.local` with [GitHub Access Token](https://github.com/settings/tokens) for GitHub with `scope` with access to `repo` permission
+
 ```
 GITHUB_TOKEN=<github-access-token>
 ```
