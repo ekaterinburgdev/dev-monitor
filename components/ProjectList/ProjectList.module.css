@@ -1,24 +1,32 @@
 .project-list {
-    padding: 24px;
-    max-width: 1200px;
-    margin: 0 auto;
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 @media (min-width: 991px) {
-    .project-list {
-        columns: 2;
-        column-gap: 0;
-        padding: 25px 0;
-    }
+  .project-list {
+    columns: 2;
+    column-gap: 0;
+    padding: 25px 0;
+  }
+}
+
+@media (min-width: 1600px) {
+  .project-list {
+    columns: 4;
+    max-width: 1920px;
+    padding: 25px;
+  }
 }
 
 .project-list__item {
-    padding: 12px 0;
-    break-inside: avoid;
+  padding: 12px 0;
+  break-inside: avoid;
 }
 
 @media (min-width: 991px) {
-    .project-list__item {
-        padding: 25px;
-    }
+  .project-list__item {
+    padding: 25px;
+  }
 }
