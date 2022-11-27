@@ -18,7 +18,7 @@ const projectsConfig = {
             url: 'https://ekaterinburg.dev/',
             icon: 'logo-site.svg',
             git: 'ekaterinburg.dev',
-            vercel: 'ekbdev',
+            vercel: 'ekaterinburg-dev',
             links: [
                 { name: 'Figma', url: 'https://www.figma.com/file/VpUQ8aZanmAIbwlSt5UTKH/%F0%9F%9A%B2-ekaterinburg.design-Site?node-id=545%3A2' },
                 { name: 'CMS', url: 'https://www.notion.so/ekaterinburg/97690fa6b5ce4e0690bf1a61056c0c69' }
