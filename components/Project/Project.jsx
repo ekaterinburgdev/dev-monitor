@@ -1,14 +1,14 @@
 import classNames from 'classnames/bind';
 import styles from './Project.module.css';
 import TimeAgo from 'javascript-time-ago';
-import ru from 'javascript-time-ago/locale/ru';
 import projectsConfig from '../../projects.config';
+import en from 'javascript-time-ago/locale/en'
 
 const DEFAULT_BRANCH_NAME = 'main';
 
-TimeAgo.addDefaultLocale(ru);
+TimeAgo.addDefaultLocale(en);
 const cx = classNames.bind(styles);
-const timeAgo = new TimeAgo('ru-RU');
+const timeAgo = new TimeAgo('en-US');
 
 export default function Project({ title, icon, url, git, vercel, stats, slots, links }) {
     return (
