@@ -1,28 +1,25 @@
-import classNames from 'classnames/bind'
-import styles from './Project.module.css'
-import TimeAgo from 'javascript-time-ago'
-import ru from 'javascript-time-ago/locale/ru'
+import classNames from 'classnames/bind';
+import styles from './Project.module.css';
+import TimeAgo from 'javascript-time-ago';
+import ru from 'javascript-time-ago/locale/ru';
+import projectsConfig from '../../projects.config';
 
-TimeAgo.addDefaultLocale(ru)
-const cx = classNames.bind(styles)
-const timeAgo = new TimeAgo('ru-RU')
+const DEFAULT_BRANCH_NAME = 'main';
+
+TimeAgo.addDefaultLocale(ru);
+const cx = classNames.bind(styles);
+const timeAgo = new TimeAgo('ru-RU');
 
 export default function Project({ title, icon, url, git, vercel, stats, slots, links }) {
     return (
         <article className={cx("project")}>
             <header className={cx("project__meta")}>
-                {
-                    icon
-                        ? <img className={cx("project__icon")} src={`/images/${icon}`} alt="" />
-                        : <span className={cx("project__letter")}>{title.charAt(0)}</span>
-                }
-                <h2 className={cx("project__title")}>
-                    {title}
-                </h2>
+                {icon ? <img className={cx("project__icon")} src={`/images/${icon}`} alt="" /> : <span className={cx("project__letter")}>{title.charAt(0)}</span>}
+                <h2 className={cx("project__title")}>{title}</h2>
 
                 <p className={cx("project__meta-description")}>
                     {git && (
-                        <a href={`https://github.com/ekaterinburgdesign/${git}`} target="_blank" rel="noreferrer">
+                        <a href={`https://github.com/${projectsConfig.organization}/${git}`} target="_blank" rel="noreferrer">
                             <svg width="16" height="16" viewBox="0 0 16 16">
                                 <path
                                     fillRule="evenodd"
@@ -32,85 +29,53 @@ export default function Project({ title, icon, url, git, vercel, stats, slots, l
                         </a>
                     )}
                     &nbsp;&nbsp;
-                    {stats === undefined ?
+                    {stats === undefined ? (
                         <>Загрузка...</>
-                        : <>
-                            <a
-                                href={`https://github.com/ekaterinburgdesign/${git}/pulls`}
-                                target="_blank"
-                                rel="noreferrer"
-                                className={cx("project__meta-link")}
-                            >
+                    ) : (
+                        <>
+                            <a href={`https://github.com/${projectsConfig.organization}/${git}/pulls`} target="_blank" rel="noreferrer" className={cx("project__meta-link")}>
                                 Ревью: {stats.pulls}
                             </a>
                             &nbsp;·&nbsp;
-                            <a
-                                href={`https://github.com/ekaterinburgdesign/${git}/issues`}
-                                target="_blank"
-                                rel="noreferrer"
-                                className={cx("project__meta-link")}
-                            >
+                            <a href={`https://github.com/${projectsConfig.organization}/${git}/issues`} target="_blank" rel="noreferrer" className={cx("project__meta-link")}>
                                 Задачи: {stats.issues}
                             </a>
                         </>
-                    }
-
+                    )}
                 </p>
             </header>
 
             <ul className={cx("project__slots-list")}>
                 <li className={cx("project__slots-list-item", "project__slots-list-item_production")}>
-                    <a
-                        href={url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className={cx("project__slots-link")}
-                    >
+                    <a href={url} target="_blank" rel="noreferrer" className={cx("project__slots-link")}>
                         {new URL(url).host}
                     </a>
                 </li>
 
-
-                {slots?.map(({ slotUrl, date, commitMessage, commitUrl, commitAuthor }) =>
+                {slots?.map(({ branch, slotUrl, date, commitMessage, commitUrl, commitAuthor }) => (
                     <li className={cx("project__slots-list-item")} key={commitUrl}>
-                        <a
-                            href={slotUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className={cx("project__slots-link")}
-                        >
-                            {new URL(slotUrl).host
-                                .replace('.vercel.app', '')
-                                .replace(vercel + '-', '')}
+                        <a href={branch === DEFAULT_BRANCH_NAME ? url : slotUrl} target="_blank" rel="noreferrer" className={cx("project__slots-link")}>
+                           {branch}
                         </a>
                         <div className={cx("project__slots-commit")}>
-                            <a
-                                href={commitUrl}
-                                target="_blank"
-                                rel="noreferrer"
-                            >
+                            <a href={commitUrl} target="_blank" rel="noreferrer">
                                 #
-                            </a> <a href={`https://github.com/${commitAuthor}`}>{commitAuthor}</a> {timeAgo.format(new Date(date))}: {commitMessage}
+                            </a>{" "}
+                            <a href={`https://github.com/${commitAuthor}`}>{commitAuthor}</a> {timeAgo.format(new Date(date))}: {commitMessage}
                         </div>
                     </li>
-                )}
+                ))}
             </ul>
 
             <ul className={cx("project__other-list")}>
                 {links.map(({ name, url }) => (
                     <li className={cx("project__other-list-item")} key={name}>
-                        <a
-                            href={url}
-                            target="_blank"
-                            rel="noreferrer"
-                            className={cx("project__other-link")}
-                        >
+                        <a href={url} target="_blank" rel="noreferrer" className={cx("project__other-link")}>
                             {name}
                         </a>
                     </li>
                 ))}
             </ul>
-
         </article>
-    )
+    );
 }

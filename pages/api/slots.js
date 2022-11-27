@@ -26,6 +26,7 @@ export default async function handler(req, res) {
             const slotSuffix = name.replace(/\//g, '-');
             const slotUrl = `https://${vercel}-${slotSuffix}.vercel.app`;
             return {
+                branch: slotSuffix,
                 slotUrl,
                 date: commit.data.commit.committer.date,
                 commitUrl: commit.data.html_url,
