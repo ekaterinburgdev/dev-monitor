@@ -1,5 +1,5 @@
 .project {
-    padding: 44px 48px 48px 40px;
+    padding: 40px 44px 44px 36px;
     vertical-align: top;
     box-shadow: 0 3px 12px -2px rgba(17, 12, 46, .15);
     width: 100%;
@@ -11,8 +11,8 @@
 
 @media (min-width: 991px) {
     .project {
-        padding-left: 80px;
-        padding-right: 64px;
+        padding-left: 64px;
+        padding-right: 48px;
     }
 }
 
@@ -21,6 +21,7 @@
 }
 
 .project__meta {
+    position: relative;
     display: flex;
     flex-flow: column wrap;
     gap: 12px;
@@ -63,8 +64,8 @@
 }
 
 .project__letter {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -75,29 +76,24 @@
     font-weight: 600;
 }
 
-@media (min-width: 991px) {
-    .project__letter {
-        margin-left: -48px;
-    }
-}
-
 .project__icon {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
 }
 
 @media (min-width: 991px) {
+    .project__letter,
     .project__icon {
-        width: 32px;
-        height: 32px;
-        margin-left: -48px;
+        position: absolute;
+        top: 0;
+        left: -40px;
     }
 }
 
 .project__title {
     margin: 0;
-    font-size: 26px;
-    font-weight: 500;
+    font-size: 22px;
+    font-weight: 600;
     display: flex;
     gap: 16px;
     align-items: center;
@@ -119,13 +115,13 @@
 
 @media (min-width: 991px) {
     .project__slots-list {
-        margin: 0 0 48px;
+        margin: 0 0 8px;
     }
 }
 
 .project__slots-list-item {
-    line-height: 1.2;
-    margin-bottom: 24px;
+    line-height: 1.1;
+    margin-bottom: 16px;
 }
 
 .project__slots-commit {
@@ -143,7 +139,7 @@
     color: #123;
     text-decoration: none;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 15px;
     margin: 0;
     transition: .1s ease color;
 }
@@ -153,7 +149,7 @@
 }
 
 .project__slots-list-item_production .project__slots-link  {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .project__slots-link:hover {
@@ -171,7 +167,7 @@
 
 @media (min-width: 991px) {
     .project__other-list {
-        margin: 0 0 8px;
+        margin: 24px 0 8px;
     }
 }
 
@@ -180,12 +176,12 @@
 }
 
 .project__other-link {
-    color: rgb(103, 103, 103);
+    color: rgb(50, 50, 50);
     text-decoration: none;
     box-shadow: 0 1px rgba(0,0,0,.25);
-    padding-bottom: 2px;
     transition: .1s ease box-shadow;
-    font-size: 16px;
+    padding-bottom: 2px;
+    font-size: 15px;
 }
 
 .project__other-link:hover {
