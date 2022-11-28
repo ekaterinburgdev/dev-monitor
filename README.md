@@ -6,7 +6,7 @@ List of Ekaterinburg Code projects updated in real-time.
 
 ## Content
 
-The project data is edited in the [projects.config.js](https://github.dev/ekaterinburgdev/projects/blob/main/projects.config.js)
+The project data is edited in the [projects.config.js](https://github.com/ekaterinburgdev/projects/edit/main/projects.config.js)
 
 ```js
 {
