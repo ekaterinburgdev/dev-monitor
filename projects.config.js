@@ -73,7 +73,7 @@ const projectsConfig = {
         },
         {
             title: 'Multi Map',
-            url: 'https://map.ekaterinburg.dev/',
+            url: 'https://map.ekaterinburg.io/',
             icon: 'logo-map.svg',
             git: 'map',
             vercel: 'ekbdev-map',
