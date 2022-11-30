@@ -1,0 +1,18 @@
+.contributors {
+  display: flex;
+  margin-bottom: 38px;
+}
+
+.contributor {
+  margin-right: 8px;
+}
+
+.contributor__avatar {
+  border-radius: 100%;
+}
+
+.contributor__contributions {
+  text-align: center;
+  font-size: 12px;
+  line-height: 1;
+}

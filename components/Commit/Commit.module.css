@@ -1,0 +1,32 @@
+.commit {
+  display: flex;
+  line-height: 1.4;
+  align-items: center;
+}
+
+.commit__avatar {
+  border-radius: 100%;
+  display: block;
+  margin-right: 16px;
+}
+
+.commit__content {
+}
+
+.commit__message {
+  font-size: 18px;
+}
+
+.commit__info {
+  font-size: 14px;
+  margin-top: 4px;
+  opacity: 0.5;
+}
+
+.commit__stats-added {
+  /* color: crimson; */
+}
+
+.commit__stats-deleted {
+  /* color: green; */
+}

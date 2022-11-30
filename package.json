@@ -11,6 +11,7 @@
   "dependencies": {
     "classnames": "^2.3.2",
     "javascript-time-ago": "^2.5.9",
+    "lodash": "^4.17.21",
     "next": "13.0.5",
     "octokit": "^2.0.10",
     "react": "18.2.0",
