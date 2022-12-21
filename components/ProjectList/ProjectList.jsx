@@ -10,6 +10,7 @@ const cx = classNames.bind(styles);
 
 export default function ProjectList({ projectsData }) {
   const [activity, setActivity] = useState([]);
+  const [contributors, setContributors] = useState([]);
 
   useEffect(() => {
     const activity = projectsData
@@ -39,9 +40,28 @@ export default function ProjectList({ projectsData }) {
     setActivity(byTotal);
   }, [projectsData]);
 
+  useEffect(() => {
+    const contributors = projectsData
+      .map((p) => p?.stats?.contributors)
+      .filter(Boolean)
+      .flat();
+
+    const byLogin = groupBy(contributors, (item) => item.login);
+
+    const contributions = Object.keys(byLogin).map((login) => {
+      const user = byLogin[login];
+      return {
+        ...user[0],
+        contributions: user.reduce((all, item) => all + item.contributions, 0),
+      };
+    }).sort((a, b) => b.contributions - a.contributions)
+
+    setContributors(contributions);
+  }, [projectsData]);
+
   return (
     <div className={cx("projects")}>
-      <Activity activity={activity} />
+      <Activity activity={activity} contributors={contributors} />
       <div className={cx("project-list")}>
         {projectsData.map((project) => (
           <div className={cx("project-list__item")} key={project.git}>

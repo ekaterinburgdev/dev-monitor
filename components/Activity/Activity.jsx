@@ -1,6 +1,7 @@
 import styles from "./Activity.module.css";
+import Contributors from "./Contributors";
 
-export function Activity({ activity }) {
+export function Activity({ activity, contributors }) {
   if (activity.length === 0) {
     return <div className={styles.loading}>Загрузка...</div>;
   }
@@ -52,6 +53,9 @@ export function Activity({ activity }) {
           ))}
         </ul>
       </div>
+
+      <h2 className={styles.title}>Контрибьютеры</h2>
+      <Contributors contributors={contributors} />
     </div>
   );
 }
