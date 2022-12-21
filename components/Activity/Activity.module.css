@@ -1,0 +1,101 @@
+.title {
+  margin: 0 0 20px;
+  padding: 0;
+  font-weight: 500;
+  font-size: 500;
+}
+
+.graph {
+  display: inline-grid;
+  grid-template-areas:
+    "empty months"
+    "days squares";
+  grid-template-columns: auto 1fr;
+  grid-gap: 10px;
+  font-size: 12px;
+  overflow: auto;
+}
+
+.loading,
+.wrapper {
+  display: inline-grid;
+  margin: 20px;
+  box-shadow: 0 3px 12px -2px rgba(17, 12, 46, 0.15);
+  background-color: #fff;
+  border-radius: 8px;
+  max-width: calc(100% - 40px);
+}
+
+.loading {
+  font-size: 24px;
+  padding: 20px;
+}
+
+.wrapper {
+  padding: 20px 44px 44px 36px;
+}
+
+.months {
+  grid-area: months;
+}
+
+.days {
+  grid-area: days;
+}
+
+.squares {
+  grid-area: squares;
+  grid-auto-flow: column;
+  grid-auto-columns: 15px;
+}
+
+.squares,
+.days {
+  display: grid;
+  grid-gap: 2px;
+  grid-template-rows: repeat(7, 15px);
+}
+
+.graph li,
+.graph ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.months {
+  display: grid;
+  grid-template-columns:
+    calc(20px * 4) /* Jan */
+    calc(20px * 4) /* Feb */
+    calc(20px * 4) /* Mar */
+    calc(20px * 5) /* Apr */
+    calc(20px * 4) /* May */
+    calc(20px * 4) /* Jun */
+    calc(20px * 5) /* Jul */
+    calc(20px * 4) /* Aug */
+    calc(20px * 4) /* Sep */
+    calc(20px * 5) /* Oct */
+    calc(20px * 4) /* Nov */
+    calc(20px * 5) /* Dec */;
+}
+
+.days li:nth-child(odd) {
+  visibility: hidden;
+}
+
+.squares li {
+  background-color: #ebedf0;
+}
+
+.squares li[data-level="1"] {
+  background-color: #c6e48b;
+}
+
+.squares li[data-level="2"] {
+  background-color: #7bc96f;
+}
+
+.squares li[data-level="3"] {
+  background-color: #196127;
+}
