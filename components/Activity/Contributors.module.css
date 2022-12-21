@@ -1,0 +1,28 @@
+.contributors {
+  display: flex;
+  margin-bottom: 38px;
+}
+
+.contributor {
+  margin-right: 8px;
+  text-decoration: none;
+  color: black;
+}
+
+.contributor:hover .contributor__avatar{
+  transform: scale(1.1);
+}
+
+.contributor__avatar {
+  border-radius: 100%;
+  max-width: 100px;
+  min-width: 40px;
+  transition: all .1s ease-out;
+  height: auto;
+}
+
+.contributor__contributions {
+  text-align: center;
+  font-size: 12px;
+  line-height: 1;
+}
