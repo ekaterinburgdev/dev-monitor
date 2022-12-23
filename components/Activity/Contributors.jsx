@@ -1,7 +1,6 @@
 import styles from "./Contributors.module.css";
 
 export default function Contributors({ contributors }) {
-  console.log(contributors)
   if (!contributors) return null;
 
   return (

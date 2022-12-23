@@ -24,11 +24,11 @@
 .loading,
 .wrapper {
   display: inline-grid;
-  margin: 20px;
+  margin: 16px;
   box-shadow: 0 3px 12px -2px rgba(17, 12, 46, 0.15);
   background-color: #fff;
   border-radius: 8px;
-  max-width: calc(100% - 40px);
+  max-width: calc(100% - 32px);
 }
 
 .loading {
@@ -66,20 +66,8 @@
 }
 
 .months {
-  display: grid;
-  grid-template-columns:
-    calc(20px * 4) /* Jan */
-    calc(20px * 4) /* Feb */
-    calc(20px * 4) /* Mar */
-    calc(20px * 5) /* Apr */
-    calc(20px * 4) /* May */
-    calc(20px * 4) /* Jun */
-    calc(20px * 5) /* Jul */
-    calc(20px * 4) /* Aug */
-    calc(20px * 4) /* Sep */
-    calc(20px * 5) /* Oct */
-    calc(20px * 4) /* Nov */
-    calc(20px * 5) /* Dec */;
+  display: flex;
+  justify-content: space-between;
 }
 
 .days li:nth-child(odd) {
