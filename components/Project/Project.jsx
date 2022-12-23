@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './Project.module.css';
+import { Pulse } from '../Pulse/Pulse'
 import TimeAgo from 'javascript-time-ago';
 import projectsConfig from '../../projects.config';
 import en from 'javascript-time-ago/locale/en'
@@ -10,7 +11,7 @@ TimeAgo.addDefaultLocale(en);
 const cx = classNames.bind(styles);
 const timeAgo = new TimeAgo('en-US');
 
-export default function Project({ title, icon, url, git, vercel, stats, slots, links }) {
+export default function Project({ title, icon, url, git, stats, slots, links }) {
     return (
         <article className={cx("project")}>
             <header className={cx("project__meta")}>
@@ -43,6 +44,7 @@ export default function Project({ title, icon, url, git, vercel, stats, slots, l
                         </>
                     )}
                 </p>
+                <Pulse activity={stats?.activity} />
             </header>
 
             <ul className={cx("project__slots-list")}>

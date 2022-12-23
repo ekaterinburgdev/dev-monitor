@@ -17,6 +17,7 @@ export default function ProjectList({ projectsData }) {
       .map((p) => p?.stats?.activity)
       .filter(Boolean)
       .flat();
+
     const byWeek = groupBy(activity, (item) => item.week);
     const byTotal = Object.keys(byWeek).map((weekstamp) => {
       const week = byWeek[weekstamp];
