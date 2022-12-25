@@ -2,13 +2,14 @@ import classNames from "classnames/bind";
 import { groupBy } from "lodash";
 import { useEffect, useState } from "react";
 import { Activity } from "../Activity/Activity";
+import { Contributions } from "../Contributions/Contributions";
 import { Contributors } from "../Contributors/Contributors";
-import Project from "../Project/Project";
-import styles from "./ProjectList.module.css";
+import Projects from "../Projects/Projects";
+import styles from "./Dashboard.module.css";
 
 const cx = classNames.bind(styles);
 
-export default function ProjectList({ projectsData }) {
+export function Dashboard({ projectsData }) {
   const [activity, setActivity] = useState([]);
   const [contributors, setContributors] = useState([]);
 
@@ -48,7 +49,6 @@ export default function ProjectList({ projectsData }) {
       .flat();
 
     const byLogin = groupBy(contributors, (item) => item.login);
-
     const contributions = Object.keys(byLogin)
       .map((login) => {
         const user = byLogin[login];
@@ -71,6 +71,7 @@ export default function ProjectList({ projectsData }) {
       <div className={cx("projects__grid")}>
         <div className={cx("projects__section", "projects__section_activity")}>
           <h2 className={cx("projects__subtitle")}>Activity</h2>
+          <h3><Contributions activity={activity} /></h3>
           <div className={cx("projects-activity")}>
             <Activity activity={activity} />
           </div>
@@ -81,13 +82,7 @@ export default function ProjectList({ projectsData }) {
         </div>
         <div className={cx("projects__section", "projects__section_repos")}>
           <h2 className={cx("projects__subtitle")}>Repositories</h2>
-          <div className={cx("project-list")}>
-            {projectsData.map((project) => (
-              <div className={cx("project-list__item")} key={project.git}>
-                <Project {...project} />
-              </div>
-            ))}
-          </div>
+          <Projects projectsData={projectsData} />
         </div>
       </div>
     </div>
