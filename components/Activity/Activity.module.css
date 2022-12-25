@@ -1,41 +1,14 @@
-
-.wrapper {
-  padding: 0px 44px 0 36px;
-  overflow: auto;
-}
-
-.title {
-  margin: 32px 0;
-  padding: 0;
-  font-weight: 500;
-  font-size: 500;
-}
-
 .graph {
-  display: inline-grid;
+  display: grid;
   grid-template-areas:
-    "empty months"
-    "days squares";
+    "months"
+    "squares";
   grid-template-columns: auto 1fr;
-  grid-gap: 10px;
-  font-size: 12px;
+  grid-gap: 4px;
+  font-size: 14px;
+  overflow-y: hidden;
+  overflow-x: auto;
 }
-
-.loading,
-.wrapper {
-  display: inline-grid;
-  margin: 16px;
-  box-shadow: 0 3px 12px -2px rgba(17, 12, 46, 0.15);
-  background-color: #fff;
-  border-radius: 8px;
-  max-width: calc(100% - 32px);
-}
-
-.loading {
-  font-size: 24px;
-  padding: 20px;
-}
-
 
 .months {
   grid-area: months;
@@ -75,7 +48,7 @@
 }
 
 .squares li {
-  background-color: #ebedf0;
+  background-color: trasparent; /* #ebedf0; */
 }
 
 .squares li[data-level="1"] {

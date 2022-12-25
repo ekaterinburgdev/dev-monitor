@@ -1,7 +1,8 @@
 import styles from "./Contributors.module.css";
+import { Loading } from '../Loading/Loading';
 
-export default function Contributors({ contributors }) {
-  if (!contributors) return null;
+export function Contributors({ contributors }) {
+  if (!contributors.length) return <Loading />;
 
   return (
     <div className={styles.contributors}>
