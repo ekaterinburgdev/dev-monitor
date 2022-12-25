@@ -27,7 +27,7 @@ export function Pulse({ activity }) {
     <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height}>
       <polyline
         fill="none"
-        stroke="black"
+        stroke="#7bc96f"
         strokeWidth={STROKE_WIDTH}
         points={points}
       />
