@@ -67,21 +67,22 @@ export function Dashboard({ projectsData }) {
 
   return (
     <div className={cx("projects")}>
-      <h1 className={cx("projects__title")}>Ekaterinburg.dev projects</h1>
+      <h1 className={cx("projects__title")}>ekaterinburg.dev projects</h1>
       <div className={cx("projects__grid")}>
         <div className={cx("projects__section", "projects__section_activity")}>
-          <h2 className={cx("projects__subtitle")}>Activity</h2>
-          <h3><Contributions activity={activity} /></h3>
+          <h2 className={cx("projects__subtitle")}>
+            Activity <span className={cx("projects__info")}><Contributions activity={activity} /></span>
+          </h2>
           <div className={cx("projects-activity")}>
             <Activity activity={activity} />
           </div>
         </div>
         <div className={cx("projects__section", "projects__section_contributors")}>
-          <h2 className={cx("projects__subtitle")}>Contributors</h2>
+          <h2 className={cx("projects__subtitle")}>Contributors <span className={cx("projects__info")}>{contributors.length}</span></h2>
           <Contributors contributors={contributors} />
         </div>
         <div className={cx("projects__section", "projects__section_repos")}>
-          <h2 className={cx("projects__subtitle")}>Repositories</h2>
+          <h2 className={cx("projects__subtitle")}>Repositories <span className={cx("projects__info")}>{projectsData.length}</span></h2>
           <Projects projectsData={projectsData} />
         </div>
       </div>

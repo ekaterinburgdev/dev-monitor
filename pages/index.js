@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Head from "next/head";
 import projectsConfig from "../projects.config";
 import { Dashboard } from "../components/Dashboard/Dashboard";
-import useInterval from "../utils/useInterval";
 
 function Home() {
   const [projectsData, setProjectsData] = useState(projectsConfig.projects);
@@ -24,10 +23,6 @@ function Home() {
   useEffect(() => {
     updateProjectsData();
   }, []);
-
-  useInterval(() => {
-    updateProjectsData();
-  }, 120000);
 
   return (
     <>

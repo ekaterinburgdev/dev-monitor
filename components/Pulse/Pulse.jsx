@@ -30,6 +30,7 @@ export function Pulse({ activity }) {
         stroke="#7bc96f"
         strokeWidth={STROKE_WIDTH}
         points={points}
+        strokeLinejoin="round"
       />
     </svg>
   );

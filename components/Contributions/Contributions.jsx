@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import styles from "./Contributions.module.css";
 
 export function Contributions({ activity }) {
   const value = useMemo(() => {
@@ -11,9 +10,5 @@ export function Contributions({ activity }) {
 
   if (!activity.length || !value) return null;
 
-  return (
-    <div className={styles.contributions}>
-      {value} contributions in the last year
-    </div>
-  );
+  return (<span>{value} contributions in&nbsp;the&nbsp;last year</span>);
 }
