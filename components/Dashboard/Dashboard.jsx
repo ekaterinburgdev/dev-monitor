@@ -2,8 +2,10 @@ import classNames from "classnames/bind";
 import { groupBy } from "lodash";
 import { useEffect, useState } from "react";
 import { Activity } from "../Activity/Activity";
+import { uniqBy } from "lodash";
 import { Contributions } from "../Contributions/Contributions";
 import { Contributors } from "../Contributors/Contributors";
+import { commitDateFormatter } from "../Activity/utils";
 import Projects from "../Projects/Projects";
 import styles from "./Dashboard.module.css";
 
@@ -20,26 +22,30 @@ export function Dashboard({ projectsData }) {
       .flat();
 
     const byWeek = groupBy(activity, (item) => item.week);
-    const byTotal = Object.keys(byWeek).map((weekstamp) => {
-      const week = byWeek[weekstamp];
-      return {
-        week: weekstamp,
-        days: week
-          .map((w) => w.days)
-          .filter(Boolean)
-          .reduce((all, row) => {
-            row.forEach((cell, columlIndex) => {
-              all[columlIndex] = all[columlIndex] || 0;
-              all[columlIndex] += cell;
-            });
+    const byTotal = Object.keys(byWeek)
+      .map((weekstamp) => {
+        const week = byWeek[weekstamp];
+        return {
+          week: weekstamp * 1000,
+          days: week
+            .map((w) => w.days)
+            .filter(Boolean)
+            .reduce((all, row) => {
+              row.forEach((cell, columlIndex) => {
+                all[columlIndex] = all[columlIndex] || 0;
+                all[columlIndex] += cell;
+              });
 
-            return all;
-          }, []),
-        total: week.reduce((all, item) => all + item.total, 0),
-      };
-    });
+              return all;
+            }, []),
+          total: week.reduce((all, item) => all + item.total, 0),
+        };
+      })
+      .filter((w) => w.week);
 
-    setActivity(byTotal);
+    setActivity(
+      uniqBy(byTotal, (item) => commitDateFormatter.format(item.week))
+    );
   }, [projectsData]);
 
   useEffect(() => {
@@ -71,18 +77,29 @@ export function Dashboard({ projectsData }) {
       <div className={cx("projects__grid")}>
         <div className={cx("projects__section", "projects__section_activity")}>
           <h2 className={cx("projects__subtitle")}>
-            Activity <span className={cx("projects__info")}><Contributions activity={activity} /></span>
+            Activity{" "}
+            <span className={cx("projects__info")}>
+              <Contributions activity={activity} />
+            </span>
           </h2>
           <div className={cx("projects-activity")}>
             <Activity activity={activity} />
           </div>
         </div>
-        <div className={cx("projects__section", "projects__section_contributors")}>
-          <h2 className={cx("projects__subtitle")}>Contributors <span className={cx("projects__info")}>{contributors.length}</span></h2>
+        <div
+          className={cx("projects__section", "projects__section_contributors")}
+        >
+          <h2 className={cx("projects__subtitle")}>
+            Contributors{" "}
+            <span className={cx("projects__info")}>{contributors.length}</span>
+          </h2>
           <Contributors contributors={contributors} />
         </div>
         <div className={cx("projects__section", "projects__section_repos")}>
-          <h2 className={cx("projects__subtitle")}>Repositories <span className={cx("projects__info")}>{projectsData.length}</span></h2>
+          <h2 className={cx("projects__subtitle")}>
+            Repositories{" "}
+            <span className={cx("projects__info")}>{projectsData.length}</span>
+          </h2>
           <Projects projectsData={projectsData} />
         </div>
       </div>
