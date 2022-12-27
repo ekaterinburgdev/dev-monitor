@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
-import uniq from "lodash/uniq";
 import styles from "./Activity.module.css";
 import { Loading } from "../Loading/Loading";
+import { clearDuplicatedMonth } from "./utils";
 
 const DAY = 1000 * 60 * 60 * 24;
 const SHOW_WEEKS = { S: 20, M: 38, L: 56 };
@@ -23,7 +23,7 @@ const descriptionFormatter = ({ index, day, week }) => {
     short: `${day}, ${commitDateFormatter.format(date)}`,
     full: `${day} contribution${
       day > 1 ? `s` : ""
-    } on ${commitDateFormatter.format(date)}`
+    } on ${commitDateFormatter.format(date)}`,
   };
 };
 
@@ -51,18 +51,19 @@ export function Activity({ activity }) {
         return { ...result, level: 0 };
       });
 
-    const months = uniq(
-      year
-        .map((w) => {
-          const timestamp = w.week * 1000;
-          if (timestamp) return new Date(timestamp);
-          return false;
-        })
-        .filter(Boolean)
-        .map(monthFormatter.format)
-    );
+    const months = year
+      .map((w) => {
+        const timestamp = w.week * 1000;
+        if (timestamp) return new Date(timestamp);
+        return false;
+      })
+      .filter(Boolean)
+      .map(monthFormatter.format);
 
-    return { months, days };
+    return {
+      months: clearDuplicatedMonth(months),
+      days,
+    };
   }, [activity, limit]);
 
   useEffect(() => {
@@ -91,8 +92,8 @@ export function Activity({ activity }) {
   return (
     <div className={styles.graph} aria-hidden>
       <ul className={styles.months}>
-        {months.map((m) => (
-          <li key={m}>{m}</li>
+        {months.map((m, i) => (
+          <li className={styles.month} key={i}>{m}</li>
         ))}
       </ul>
       <ul className={styles.squares}>
