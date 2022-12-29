@@ -1,23 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import styles from "./Activity.module.css";
 import { Loading } from "../Loading/Loading";
-import { clearDuplicatedMonth } from "./utils";
+import { clearDuplicatedMonth, monthFormatter,commitDateFormatter } from "./utils";
 
 const DAY = 1000 * 60 * 60 * 24;
 const SHOW_WEEKS = { S: 20, M: 38, L: 56 };
 const SHOW_WEEKS_BREAKPOINTS = { S: 700, L: 1600 };
 
-const monthFormatter = new Intl.DateTimeFormat("en", {
-  month: "short",
-});
-
-const commitDateFormatter = new Intl.DateTimeFormat("en", {
-  month: "short",
-  day: "numeric",
-});
-
 const descriptionFormatter = ({ index, day, week }) => {
-  const date = new Date(week * 1000 + index * DAY);
+  const date = week + index * DAY;
 
   return {
     short: `${day}, ${commitDateFormatter.format(date)}`,
@@ -52,11 +43,7 @@ export function Activity({ activity }) {
       });
 
     const months = year
-      .map((w) => {
-        const timestamp = w.week * 1000;
-        if (timestamp) return new Date(timestamp);
-        return false;
-      })
+      .map((w) => w.week)
       .filter(Boolean)
       .map(monthFormatter.format);
 

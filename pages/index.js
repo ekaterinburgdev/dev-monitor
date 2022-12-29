@@ -4,9 +4,12 @@ import projectsConfig from "../projects.config";
 import { Dashboard } from "../components/Dashboard/Dashboard";
 
 function Home() {
-  const [projectsData, setProjectsData] = useState(projectsConfig.projects);
+  const [projects, setProjectsData] = useState(projectsConfig.projects);
+  const [loaded, setLoaded] = useState(false);
 
   const updateProjectsData = async () => {
+    if (loaded) return;
+
     const projectsData = await Promise.all(
       projectsConfig.projects.map(async (project) => {
         return {
@@ -18,6 +21,7 @@ function Home() {
     );
 
     setProjectsData(projectsData);
+    setLoaded(true);
   };
 
   useEffect(() => {
@@ -31,13 +35,13 @@ function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
-      <Dashboard projectsData={projectsData} />
+      <Dashboard projectsData={projects} />
     </>
   );
 }
 
 async function loadStats(repo) {
-  const response = await fetch(`/api/repo-stats?repo=${repo}`);
+  const response = await fetch(`/api/stats?repo=${repo}`);
   return await response.json();
 }
 

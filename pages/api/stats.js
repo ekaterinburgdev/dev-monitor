@@ -1,0 +1,46 @@
+import { Octokit } from "octokit";
+import projectsConfig from "../../projects.config";
+import { cache } from "../../utils/cache";
+
+export default async function handler(req, res) {
+  const { repo } = req.query;
+  const owner = projectsConfig.organization;
+
+  const octokit = new Octokit({
+    auth: process.env.GITHUB_TOKEN,
+  });
+
+  const repoData = await octokit.request("GET /repos/{owner}/{repo}", {
+    owner,
+    repo,
+  });
+
+  const pullsData = await octokit.request("GET /repos/{owner}/{repo}/pulls", {
+    owner,
+    repo,
+  });
+
+  const activityData = await octokit.request(
+    "GET /repos/{owner}/{repo}/stats/commit_activity",
+    {
+      owner,
+      repo,
+    }
+  );
+
+  const contributorsData = await octokit.request(
+    "GET /repos/{owner}/{repo}/contributors",
+    {
+      owner,
+      repo,
+    }
+  );
+
+  cache(res, 60 * 60 * 10);
+  res.status(200).json({
+    activity: activityData.data,
+    contributors: contributorsData.data,
+    issues: repoData.data.open_issues_count,
+    pulls: pullsData.data.length,
+  });
+}

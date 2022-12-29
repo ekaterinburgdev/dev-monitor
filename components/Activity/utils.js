@@ -22,3 +22,12 @@ export function clearDuplicatedMonth(arr) {
   }
   return arr;
 }
+
+export const monthFormatter = new Intl.DateTimeFormat("en", {
+  month: "short",
+});
+
+export const commitDateFormatter = new Intl.DateTimeFormat("en", {
+  month: "short",
+  day: "numeric",
+});

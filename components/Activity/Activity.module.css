@@ -48,7 +48,7 @@
 }
 
 .square:hover {
-  outline: 2px solid #196127;
+  box-shadow: 0 0 0 2px #196127;
 }
 
 .square[data-level="1"] {
