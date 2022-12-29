@@ -4,7 +4,7 @@
     "months"
     "squares";
   grid-template-columns: auto 1fr;
-  grid-gap: 4px;
+  grid-gap: 8px;
   font-size: 14px;
   padding: 8px 0;
 }
@@ -15,6 +15,16 @@
 
 .month {
   width: 15px;
+  white-space: nowrap;
+  font-weight: 500;
+  color: #196127;
+  position: relative;
+}
+
+.month__contributions {
+  font-weight: normal;
+  position: absolute;
+  padding-left: 2px;
 }
 
 .squares {
@@ -42,7 +52,7 @@
 }
 
 .square {
-  background-color: trasparent;
+  background-color: transparent;
   position: relative;
   border-radius: 3px;
 }

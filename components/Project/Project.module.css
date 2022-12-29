@@ -85,7 +85,7 @@
   .project__letter,
   .project__icon {
     position: absolute;
-    top: 0;
+    top: -2px;
     left: -40px;
   }
 }
@@ -97,6 +97,8 @@
   display: flex;
   gap: 16px;
   align-items: center;
+  text-decoration: underline;
+  text-decoration-color: #ddd;
 }
 
 .project__github-icon {

@@ -1,6 +1,4 @@
-function getPercent({ min, max, value }) {
-  return (100 * (value - min)) / (max - min);
-}
+import { getPercent } from "../../utils/getPercent";
 
 const STROKE_WIDTH = 2;
 const X_FREQUENCY = 5;
