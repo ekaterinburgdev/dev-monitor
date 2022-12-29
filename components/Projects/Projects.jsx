@@ -10,7 +10,8 @@ export default function Projects({ projectsData }) {
   try {
     sortedByLastContribution = projectsData
       .map((project) => {
-        const lastContribution = new Date(project.slots?.[0].date).getTime();
+        const lastContributionDate = project.slots?.[0]?.date;
+        const lastContribution = lastContributionDate ? new Date(lastContributionDate).getTime() : -1;
         return { ...project, lastContribution };
       })
       .sort((a, b) => b.lastContribution - a.lastContribution);

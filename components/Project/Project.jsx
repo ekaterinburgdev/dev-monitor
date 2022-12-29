@@ -18,12 +18,13 @@ export default function Project({
   icon,
   url,
   git,
-  stats = [],
-  slots = [],
+  stats,
+  slots,
   links,
 }) {
   const contributions = getContributions(stats?.contributors);
-  const commitsWithoutRobot = slots.filter(s => s.commitAuthor !== "web-flow");
+  const commitsWithoutRobot =
+    slots?.filter((s) => s.commitAuthor !== "web-flow") || [];
 
   return (
     <article className={cx("project")}>
@@ -95,6 +96,11 @@ export default function Project({
           )}
         ></li>
 
+        {commitsWithoutRobot.length === 0 && stats !== undefined ? (
+          <span className={cx("project__slots-empty")}>
+            No open pull requests
+          </span>
+        ) : null}
         {commitsWithoutRobot?.map(
           ({
             branch,
@@ -110,6 +116,7 @@ export default function Project({
 
             return (
               <li className={cx("project__slots-list-item")} key={commitUrl}>
+                {isNew && "⚡️🆕 "} 
                 <a
                   href={branch === DEFAULT_BRANCH_NAME ? url : slotUrl}
                   target="_blank"
@@ -119,14 +126,14 @@ export default function Project({
                   {commitMessage}
                 </a>
                 <div className={cx("project__slots-commit")}>
-                  {isNew && "⚡️🆕 "}
                   <a href={commitUrl} target="_blank" rel="noreferrer">
                     #
                   </a>{" "}
                   <a href={`https://github.com/${commitAuthor}`}>
                     {commitAuthor}
                   </a>{" "}
-                  {timeAgo.format(commitDate)}: {commitMessage}
+                  {timeAgo.format(commitDate)}
+                  {/* : {commitMessage} */}
                 </div>
               </li>
             );
