@@ -1,6 +1,5 @@
 import { Octokit } from "octokit";
 import projectsConfig from "../../projects.config";
-import { cache } from "../../utils/cache";
 
 export default async function handler(req, res) {
   const { repo, vercel } = req.query;
@@ -51,6 +50,5 @@ export default async function handler(req, res) {
     return 0;
   });
 
-  cache(res, 60 * 60 * 10);
   res.status(200).json(sortedSlots);
 }
