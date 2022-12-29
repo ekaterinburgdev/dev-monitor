@@ -116,7 +116,7 @@ export default function Project({
                   rel="noreferrer"
                   className={cx("project__slots-branch")}
                 >
-                  {branch}
+                  {commitMessage}
                 </a>
                 <div className={cx("project__slots-commit")}>
                   {isNew && "⚡️🆕 "}
