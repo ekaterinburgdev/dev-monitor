@@ -79,7 +79,7 @@
   .project__letter,
   .project__icon {
     position: absolute;
-    top: 0;
+    top: -2px;
     left: -40px;
   }
 }

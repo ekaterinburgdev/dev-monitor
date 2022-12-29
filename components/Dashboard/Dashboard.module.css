@@ -24,10 +24,6 @@
   color: var(--text-color-third);
 }
 
-.projects__activity {
-  overflow: auto;
-}
-
 .projects__grid {
   display: grid;
   width: 100%;
@@ -58,5 +54,9 @@
       "activity activity activity"
       "contributors contributors contributors"
       "repos repos repos";
+  }
+
+  .projects__activity {
+    overflow: auto;
   }
 }

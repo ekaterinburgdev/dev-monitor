@@ -8,6 +8,7 @@ import { Contributors } from "../Contributors/Contributors";
 import { commitDateFormatter } from "../Activity/utils";
 import Projects from "../Projects/Projects";
 import styles from "./Dashboard.module.css";
+import { getContributions } from "../Contributors/getContributions";
 
 const cx = classNames.bind(styles);
 
@@ -54,19 +55,7 @@ export function Dashboard({ projectsData }) {
       .filter(Boolean)
       .flat();
 
-    const byLogin = groupBy(contributors, (item) => item.login);
-    const contributions = Object.keys(byLogin)
-      .map((login) => {
-        const user = byLogin[login];
-        return {
-          ...user[0],
-          contributions: user.reduce(
-            (all, item) => all + item.contributions,
-            0
-          ),
-        };
-      })
-      .sort((a, b) => b.contributions - a.contributions);
+    const contributions = getContributions(contributors)
 
     setContributors(contributions);
   }, [projectsData]);
@@ -93,7 +82,7 @@ export function Dashboard({ projectsData }) {
             Contributors{" "}
             {contributors.length && <span className={cx("projects__info")}>{contributors.length}</span>}
           </h2>
-          <Contributors contributors={contributors} />
+          <Contributors contributors={contributors} scaled />
         </div>
         <div className={cx("projects__section", "projects__section_repos")}>
           <h2 className={cx("projects__subtitle")}>
