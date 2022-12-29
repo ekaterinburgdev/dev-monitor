@@ -104,6 +104,8 @@ export default function Project({
             commitAuthor,
           }) => {
             const commitDate = new Date(date);
+            const DAY = 1000 * 60 * 60 * 24;
+            const isNew = commitDate - new Date() > -DAY * 3;
 
             return (
               <li className={cx("project__slots-list-item")} key={commitUrl}>
@@ -116,6 +118,7 @@ export default function Project({
                   {branch}
                 </a>
                 <div className={cx("project__slots-commit")}>
+                  {isNew && "⚡️🆕 "}
                   <a href={commitUrl} target="_blank" rel="noreferrer">
                     #
                   </a>{" "}
