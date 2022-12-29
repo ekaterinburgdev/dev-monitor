@@ -18,11 +18,12 @@ export default function Project({
   icon,
   url,
   git,
-  stats,
-  slots,
+  stats = [],
+  slots = [],
   links,
 }) {
   const contributions = getContributions(stats?.contributors);
+  const commitsWithoutRobot = slots.filter(s => s.commitAuthor !== "web-flow");
 
   return (
     <article className={cx("project")}>
@@ -94,7 +95,7 @@ export default function Project({
           )}
         ></li>
 
-        {slots?.map(
+        {commitsWithoutRobot?.map(
           ({
             branch,
             slotUrl,
@@ -113,7 +114,7 @@ export default function Project({
                   href={branch === DEFAULT_BRANCH_NAME ? url : slotUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className={cx("project__slots-link")}
+                  className={cx("project__slots-branch")}
                 >
                   {branch}
                 </a>

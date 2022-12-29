@@ -16,10 +16,6 @@
   }
 }
 
-.project:hover {
-  box-shadow: 0 3px 12px -2px rgba(17, 12, 46, 0.225);
-}
-
 .project__meta {
   position: relative;
   display: flex;
@@ -126,15 +122,28 @@
   margin-bottom: 16px;
 }
 
+.project__slots-branch {
+  color: #123;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration-color: #ddd;
+}
+
+.project__slots-branch:hover {
+  color: #000;
+}
+
 .project__slots-commit {
   color: rgb(150, 150, 150);
   font-size: 14px;
   line-height: 1.3;
   margin-top: 2px;
+  font-weight: 500;
 }
 
 .project__slots-commit > a {
   color: inherit;
+  text-decoration-color: #ddd;
 }
 
 .project__slots-link {
