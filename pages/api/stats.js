@@ -1,6 +1,5 @@
 import { Octokit } from "octokit";
 import projectsConfig from "../../projects.config";
-import { cache } from "../../utils/cache";
 
 export default async function handler(req, res) {
   const { repo } = req.query;
@@ -36,7 +35,6 @@ export default async function handler(req, res) {
     }
   );
 
-  cache(res, 60 * 60 * 10);
   res.status(200).json({
     activity: activityData.data,
     contributors: contributorsData.data,
