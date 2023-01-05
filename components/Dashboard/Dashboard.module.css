@@ -5,11 +5,11 @@
 }
 
 .projects__title {
-  font-size: clamp(36px, 9vw, 100px);
-  line-height: 1;
-  font-weight: 500;
-  margin-top: 2vw;
-  margin-bottom: 1vw;
+  font-size: clamp(36px, 10vw, 180px);
+  line-height: 0.9;
+  font-weight: 600;
+  margin-top: 3vw;
+  margin-bottom: 2vw;
 }
 
 .projects__subtitle {
@@ -21,7 +21,7 @@
 }
 
 .projects__info {
-  color: #aaa;
+  color: white;
 }
 
 .projects__grid {
