@@ -24,6 +24,10 @@
   color: var(--text-color-third);
 }
 
+.projects__activity {
+  overflow: auto;
+}
+
 .projects__grid {
   display: grid;
   width: 100%;

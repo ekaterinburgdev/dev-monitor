@@ -82,7 +82,7 @@ export function Dashboard({ projectsData }) {
               <Contributions activity={activity} />
             </span>
           </h2>
-          <div className={cx("projects-activity")}>
+          <div className={cx("projects__activity")}>
             <Activity activity={activity} />
           </div>
         </div>
