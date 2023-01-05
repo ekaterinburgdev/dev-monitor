@@ -38,7 +38,7 @@ export default async function handler(req, res) {
   res.status(200).json({
     activity: activityData.data,
     contributors: contributorsData.data,
-    issues: repoData.data.open_issues_count,
+    repository: repoData.data,
     pulls: pullsData.data.length,
   });
 }

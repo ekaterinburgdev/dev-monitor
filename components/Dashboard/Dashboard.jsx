@@ -82,7 +82,7 @@ export function Dashboard({ projectsData }) {
               <Contributions activity={activity} />
             </span>
           </h2>
-          <div className={cx("projects-activity")}>
+          <div className={cx("projects__activity")}>
             <Activity activity={activity} />
           </div>
         </div>
@@ -91,7 +91,7 @@ export function Dashboard({ projectsData }) {
         >
           <h2 className={cx("projects__subtitle")}>
             Contributors{" "}
-            {contributors.length && <span className={cx("projects__info")}>{contributors.length}</span>}
+            {contributors.length > 0 && <span className={cx("projects__info")}>{contributors.length}</span>}
           </h2>
           <Contributors contributors={contributors} />
         </div>

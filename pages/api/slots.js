@@ -35,6 +35,7 @@ export default async function handler(req, res) {
         commitUrl: commit.data.html_url,
         commitMessage: commit.data.commit.message,
         commitAuthor: commit.data.committer?.login,
+        commitAuthorAvatar: commit.data.committer?.avatar_url,
       };
     })
   );
