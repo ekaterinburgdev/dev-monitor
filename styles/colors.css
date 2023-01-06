@@ -1,0 +1,25 @@
+:root {
+  --bg-color: #000;
+
+  --text-color-primary: #ffffff;
+  --text-color-secondary: #a5b4d2;
+  --text-color-third: #55647d;
+
+  --project-card-color: #1e2841;
+
+  --activity-color-primary: #c6e48b;
+  --activity-color-secondary: #7bc96f;
+  --activity-color-third: #196127;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-color: white;
+
+    --text-color-primary: black;
+    --text-color-secondary: #55647d;
+    --text-color-third: #a5b4d2;
+
+    --project-card-color: #fff;
+  }
+}

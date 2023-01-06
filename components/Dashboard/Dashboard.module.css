@@ -21,7 +21,7 @@
 }
 
 .projects__info {
-  color: white;
+  color: var(--text-color-third);
 }
 
 .projects__grid {

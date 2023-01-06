@@ -6,7 +6,6 @@
 
 .contributor {
   text-decoration: none;
-  color: white;
 }
 
 .contributor:hover .contributor__avatar {
