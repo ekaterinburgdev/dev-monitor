@@ -1,6 +1,8 @@
 import { Octokit } from "octokit";
 import projectsConfig from "../../projects.config";
 
+const GITHUB_BOT_AUTHOR = "web-flow";
+
 export default async function handler(req, res) {
   const { repo, vercel } = req.query;
   const owner = projectsConfig.organization;
@@ -40,16 +42,18 @@ export default async function handler(req, res) {
     })
   );
 
-  const sortedSlots = slotsData.sort((a, b) => {
-    if (a.date > b.date) {
-      return -1;
-    }
-    if (a.date < b.date) {
-      return 1;
-    }
+  const sortedSlots = slotsData
+    .filter(({ commitAuthor }) => commitAuthor !== GITHUB_BOT_AUTHOR)
+    .sort((a, b) => {
+      if (a.date > b.date) {
+        return -1;
+      }
+      if (a.date < b.date) {
+        return 1;
+      }
 
-    return 0;
-  });
+      return 0;
+    });
 
   res.status(200).json(sortedSlots);
 }

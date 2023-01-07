@@ -23,3 +23,7 @@
   border: none;
   vertical-align: text-top;
 }
+
+.slot__mark {
+  color: var(--text-color-third);
+}

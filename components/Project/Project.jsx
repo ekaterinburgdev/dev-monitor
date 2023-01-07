@@ -7,7 +7,8 @@ import { Chips } from "../Chips/Chips";
 
 const cx = classNames.bind(styles);
 
-export default function Project({ title, icon, url, stats, slots, links }) {
+export default function Project(project) {
+  const { title, icon, url, stats, links } = project;
   const link = new URL(url).host;
 
   if (!stats)
@@ -55,21 +56,7 @@ export default function Project({ title, icon, url, stats, slots, links }) {
         <Pulse activity={stats?.activity} />
       </div>
       <div className={cx("project__section")}>
-        <Chips
-          links={[
-            {
-              name: `Pull requests (${stats.pulls})`,
-              url: `${stats.repository.html_url}/pulls`,
-            },
-            {
-              name: `Issues (${stats.repository.open_issues})`,
-              url: `${stats.repository.html_url}/issues`,
-            },
-          ]}
-        />
-      </div>
-      <div className={cx("project__section")}>
-        <Slots url={url} slots={slots} />
+        <Slots {...project} repository={stats.repository} />
       </div>
     </article>
   );

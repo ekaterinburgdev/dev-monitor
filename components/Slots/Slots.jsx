@@ -1,55 +1,43 @@
-import styles from "./Slots.module.css";
-import en from "javascript-time-ago/locale/en";
-import TimeAgo from "javascript-time-ago";
+import { Tab, Tabs, TabList, TabPanel } from "../Tabs/Tabs";
+import { BranchesSlots } from "./BranchesSlots";
+import { PullsSlots } from "./PullsSlots";
+import { IssuesSlots } from "./IssuesSlots";
 
-TimeAgo.addDefaultLocale(en);
-
-const timeAgo = new TimeAgo("en-US");
-const DEFAULT_BRANCH_NAME = "main";
-
-export function Slots({ slots = [], url }) {
-  const slotsWithoutBot = slots.filter((s) => s.commitAuthor !== "web-flow");
+export function Slots({ repository, ...project }) {
+  const pulls = project.stats.pulls;
+  const hasPulls = Boolean(pulls.length);
 
   return (
-    <ul className={styles.slots}>
-      {slotsWithoutBot.map(
-        ({
-          branch,
-          slotUrl,
-          date,
-          commitMessage,
-          commitUrl,
-          commitAuthor,
-          commitAuthorAvatar,
-        }) => (
-          <li className={styles.slot} key={commitUrl}>
-            <a
-              href={branch === DEFAULT_BRANCH_NAME ? url : slotUrl}
-              target="_blank"
-              rel="noreferrer"
-              className={styles.slot__link}
-            >
-              {branch}, {timeAgo.format(new Date(date))}
-            </a>
-            <div className={styles.slot__info}>
-              {commitAuthor && (
-                <>
-                  <a
-                    href={`https://github.com/${commitAuthor}`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <img src={commitAuthorAvatar} className={styles.slot__avatar} />
-                    {commitAuthor}
-                  </a>
-                  :
-                </>
-              )}{" "}
-              <i>{commitMessage}</i>
-            </div>
-          </li>
-        )
-      )}
-    </ul>
+    <>
+      <Tabs>
+        <TabList>
+          <Tab>Branches</Tab>
+          <Tab disabled={!hasPulls}>
+            Pulls ({pulls.length})
+          </Tab>
+          <Tab>
+            Issues{" "}
+            {Boolean(repository.open_issues_count) &&
+              `(${repository.open_issues_count})`}
+          </Tab>
+        </TabList>
+
+        <TabPanel>
+          <BranchesSlots {...project} repositoryUrl={repository.html_url} />
+        </TabPanel>
+
+        <TabPanel>
+          <PullsSlots
+            {...project}
+            pulls={pulls}
+            repositoryUrl={repository.html_url}
+          />
+        </TabPanel>
+
+        <TabPanel>
+          <IssuesSlots {...project} repositoryUrl={repository.html_url} />
+        </TabPanel>
+      </Tabs>
+    </>
   );
 }

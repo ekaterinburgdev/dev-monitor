@@ -7,15 +7,14 @@ function Home() {
   const [projects, setProjectsData] = useState(projectsConfig.projects);
   const [loaded, setLoaded] = useState(false);
 
-  const updateProjectsData = async () => {
+  const init = async () => {
     if (loaded) return;
 
     const projectsData = await Promise.all(
       projectsConfig.projects.map(async (project) => {
         return {
           ...project,
-          stats: await loadStats(project.git),
-          slots: await loadSlots(project.git, project.vercel),
+          stats: await loadRepoInfo(project.git),
         };
       })
     );
@@ -25,7 +24,8 @@ function Home() {
   };
 
   useEffect(() => {
-    updateProjectsData();
+    init();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -41,13 +41,8 @@ function Home() {
   );
 }
 
-async function loadStats(repo) {
-  const response = await fetch(`/api/stats?repo=${repo}`);
-  return await response.json();
-}
-
-async function loadSlots(repo, vercel) {
-  const response = await fetch(`/api/slots?repo=${repo}&vercel=${vercel}`);
+async function loadRepoInfo(repo) {
+  const response = await fetch(`/api/repository?repo=${repo}`);
   return await response.json();
 }
 
