@@ -15,6 +15,10 @@
 
 .month {
   width: 15px;
+  white-space: nowrap;
+  font-weight: 500;
+  color: var(--activity-color-secondary);
+  position: relative;
 }
 
 .squares {
@@ -48,22 +52,24 @@
 }
 
 .square:hover {
-  box-shadow: 0 0 0 2px #196127;
+  box-shadow: 0 0 0 2px var(--activity-color-third);
+  visibility: visible;
 }
 
 .square[data-level="1"] {
-  background-color: #c6e48b;
+  background-color: var(--activity-color-primary);
+  transform: scale(0.95);
 }
 
 .square[data-level="2"] {
-  background-color: #7bc96f;
-  transform: scale(1.25);
+  background-color: var(--activity-color-secondary);
+  transform: scale(1.05);
   z-index: 2;
 }
 
 .square[data-level="3"] {
-  background-color: #196127;
-  transform: scale(1.35);
+  background-color: var(--activity-color-third);
+  transform: scale(1.15);
   z-index: 3;
 }
 
@@ -77,10 +83,10 @@
   transform: translateY(-50%);
   top: 50%;
   left: calc(100% + 8px);
-  background-color: #000;
+  background-color: var(--text-color-primary);
+  color: var(--bg-color);
   padding: 4px 12px 3px;
   font-size: 13px;
-  color: white;
   border-radius: 20px;
   z-index: 12;
   white-space: nowrap;

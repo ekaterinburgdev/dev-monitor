@@ -13,10 +13,21 @@ body {
 }
 
 body {
-  background: #f8f8f8;
+  background-color: var(--bg-color);
+  color: var(--text-color-primary);
 }
 
 h1,
 h2 {
   margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--text-color-third);
+}
+
+a:hover {
+  color: var(--text-color-primary);
+  text-decoration-color: var(--text-color-primary);
 }

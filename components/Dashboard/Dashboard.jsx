@@ -91,7 +91,7 @@ export function Dashboard({ projectsData }) {
         >
           <h2 className={cx("projects__subtitle")}>
             Contributors{" "}
-            <span className={cx("projects__info")}>{contributors.length}</span>
+            {contributors.length && <span className={cx("projects__info")}>{contributors.length}</span>}
           </h2>
           <Contributors contributors={contributors} />
         </div>
