@@ -1,5 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "./Project.module.css";
+import { isDeadProject, getLastWeekActivity } from "../usecases/metrics";
 import { Pulse } from "../Pulse/Pulse";
 import { Loading } from "../Loading/Loading";
 import { SlotsInfo } from "../Slots/SlotsInfo";
@@ -25,8 +26,21 @@ export default function Project({ openProject, ...project }) {
       </article>
     );
 
+  const isApiError = stats?.activity.length === undefined;
+  const activityByWeeks = stats?.activity.length
+    ? stats?.activity?.map((a) => a.total)
+    : [];
+  const isDead = isDeadProject(activityByWeeks);
+  const lastActivity = getLastWeekActivity(activityByWeeks);
+
   return (
-    <article className={cx("project")}>
+    <article
+      onClick={onClick}
+      className={cx("project", "project_hover", {
+        ["project_dead"]: !isApiError && isDead,
+        ["project_disabled"]: isApiError,
+      })}
+    >
       <div className={cx("project__cover")}></div>
       <img
         className={cx("project__icon")}
@@ -53,10 +67,16 @@ export default function Project({ openProject, ...project }) {
         <Chips links={links} />
       </div>
       <div className={cx("project__section")}>
-        <Pulse activity={stats?.activity} />
+        <Pulse activity={activityByWeeks} isDead={isDead} />
       </div>
-      <div className={cx("project__section")} onClick={onClick}>
+      <div className={cx("project__section")}>
         <SlotsInfo project={project} repository={stats.repository} />
+      </div>
+
+      <div className={cx("project__section")}>
+        {isDead && !isApiError && (
+          <div>Последняя активность {lastActivity} нед. назад</div>
+        )}
       </div>
     </article>
   );

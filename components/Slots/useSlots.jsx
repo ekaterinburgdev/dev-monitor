@@ -18,13 +18,8 @@ export function useSlots({ git, vercel, loadItems }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const firstItems = items.slice(0, 5);
-  const hasMoreItems = items.length > firstItems.length;
-
   return {
     loaded,
     items,
-    firstItems,
-    hasMoreItems,
   };
 }

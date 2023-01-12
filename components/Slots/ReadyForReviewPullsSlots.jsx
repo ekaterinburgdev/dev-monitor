@@ -1,20 +1,16 @@
 import styles from "./Slots.module.css";
-import { Loading } from "../Loading/Loading";
-import { useSlots } from "./useSlots";
 import TimeAgo from "../TimeAgo";
 
-export function IssuesSlots({ git, vercel, repositoryUrl }) {
-  const { loaded, items } = useSlots({
-    git,
-    vercel,
-    loadItems: loadIssues,
-  });
+export function ReadyForReviewPullsSlots({ pulls = [] }) {
+  if (!pulls.length) return <p>No pull requests found</p>;
 
-  if (!loaded) return <Loading />;
+  const readyForReview = pulls.filter((p) => p.reviewers.length);
+
+  if (!readyForReview.length) return <p>No pull requests for review</p>;
 
   return (
     <ul className={styles.slots}>
-      {items.map(({ title, url, date, author, authorAvatar }) => {
+      {readyForReview.map(({ title, url, date, author, authorAvatar }) => {
         return (
           <li className={styles.slot} key={url}>
             <a
@@ -43,23 +39,6 @@ export function IssuesSlots({ git, vercel, repositoryUrl }) {
           </li>
         );
       })}
-
-      <li className={styles.slot}>
-        <a
-          href={`${repositoryUrl}/issues`}
-          target="_blank"
-          rel="noreferrer"
-          className={styles.slot__link}
-        >
-          All issues
-        </a>
-      </li>
     </ul>
   );
-}
-
-async function loadIssues(repo) {
-  const response = await fetch(`/api/issues?repo=${repo}`);
-
-  return await response.json();
 }

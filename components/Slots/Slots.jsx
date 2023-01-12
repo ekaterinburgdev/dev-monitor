@@ -1,7 +1,8 @@
 import { Tab, Tabs, TabList, TabPanel } from "../Tabs/Tabs";
-import { BranchesSlots } from "./BranchesSlots";
+import { DeadBranchesSlots } from "./DeadBranchesSlots";
 import { PullsSlots } from "./PullsSlots";
 import { IssuesSlots } from "./IssuesSlots";
+import { ReadyForReviewPullsSlots } from "./ReadyForReviewPullsSlots";
 
 export function Slots({ repository, ...project }) {
   const pulls = project.stats.pulls;
@@ -11,10 +12,9 @@ export function Slots({ repository, ...project }) {
     <>
       <Tabs>
         <TabList>
-          <Tab>Branches</Tab>
-          <Tab disabled={!hasPulls}>
-            Pulls ({pulls.length})
-          </Tab>
+          <Tab>Dead branches</Tab>
+          <Tab>For review</Tab>
+          <Tab disabled={!hasPulls}>Pulls ({pulls.length})</Tab>
           <Tab>
             Issues{" "}
             {Boolean(repository.open_issues_count) &&
@@ -23,7 +23,15 @@ export function Slots({ repository, ...project }) {
         </TabList>
 
         <TabPanel>
-          <BranchesSlots {...project} repositoryUrl={repository.html_url} />
+          <DeadBranchesSlots {...project} repositoryUrl={repository.html_url} />
+        </TabPanel>
+
+        <TabPanel>
+          <ReadyForReviewPullsSlots
+            {...project}
+            pulls={pulls}
+            repositoryUrl={repository.html_url}
+          />
         </TabPanel>
 
         <TabPanel>

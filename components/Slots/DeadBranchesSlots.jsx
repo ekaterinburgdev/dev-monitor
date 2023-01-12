@@ -2,23 +2,27 @@ import styles from "./Slots.module.css";
 import { Loading } from "../Loading/Loading";
 import { useSlots } from "./useSlots";
 import TimeAgo from "../TimeAgo";
+import { isDeadBranch } from "../usecases/metrics";
 
 const DEFAULT_BRANCH_NAME = "main";
 
-export function BranchesSlots({ git, url, vercel, repositoryUrl }) {
-  const { loaded, firstItems, hasMoreItems } = useSlots({
+export function DeadBranchesSlots({ git, url, vercel }) {
+  const { loaded, items } = useSlots({
     git,
     vercel,
     loadItems: loadBranches,
   });
 
+  const filterDead = (item) => isDeadBranch(item.date);
+  const branches = items.filter(filterDead);
+
   if (!loaded) return <Loading />;
 
-  if (!firstItems.length) return <p>No branches found</p>;
+  if (!branches.length) return <p>No dead branches</p>;
 
   return (
     <ul className={styles.slots}>
-      {firstItems.map(
+      {branches.map(
         ({
           branch,
           slotUrl,
@@ -58,19 +62,6 @@ export function BranchesSlots({ git, url, vercel, repositoryUrl }) {
             </div>
           </li>
         )
-      )}
-
-      {hasMoreItems && (
-        <li className={styles.slot}>
-          <a
-            href={`${repositoryUrl}/branches`}
-            target="_blank"
-            rel="noreferrer"
-            className={styles.slot__link}
-          >
-            All branches
-          </a>
-        </li>
       )}
     </ul>
   );
