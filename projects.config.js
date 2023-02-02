@@ -20,6 +20,32 @@ const projectsConfig = {
       ],
     },
     {
+      title: "ekaterinburg-ui",
+      url: "https://github.com/ekaterinburgdev/ekaterinburg-ui",
+      icon: "logo-site.svg",
+      git: "ekaterinburg-ui",
+      vercel: "edesign",
+      links: [
+        {
+          name: "Figma",
+          url: "https://www.figma.com/file/VpUQ8aZanmAIbwlSt5UTKH/%F0%9F%9A%B2-Ekaterinburg.design?node-id=3862%3A4353&t=4st48NCavDjuF4k4-0",
+        },
+      ],
+    },
+    {
+      title: "ekaterinburg.io",
+      url: "https://ekaterinburg.io/",
+      icon: "logo-site.svg",
+      git: "ekaterinburg.io",
+      vercel: "edesign",
+      links: [
+        {
+          name: "Figma",
+          url: "https://www.figma.com/file/VpUQ8aZanmAIbwlSt5UTKH/%F0%9F%9A%B2-Ekaterinburg.design?node-id=3862%3A4353&t=4st48NCavDjuF4k4-0",
+        },
+      ],
+    },
+    {
       title: "ekaterinburg.dev",
       url: "https://ekaterinburg.dev/",
       icon: "logo-site.svg",
