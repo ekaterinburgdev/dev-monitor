@@ -3,8 +3,29 @@
   background-color: var(--project-card-color);
   break-inside: avoid;
   padding: 40px 48px 40px 64px;
-  box-shadow: 0 3px 12px -2px rgba(17, 12, 46, 0.15);
+  box-shadow: 0 3px 12px -2px var(--project-card-shadow);
   position: relative;
+  transition: all 0.3s;
+}
+
+.project_no_shadow {
+  box-shadow: none;
+}
+
+.project_hover {
+  cursor: pointer;
+}
+
+.project_hover:hover {
+  transform: scale(1.05);
+}
+
+.project_dead {
+  background-color: var(--bg-color-danger);
+}
+
+.project_disabled {
+  opacity: 0.5;
 }
 
 .project__icon {

@@ -1,20 +1,21 @@
 import classNames from "classnames/bind";
-import styles from "./Project.module.css";
-import { isDeadProject, getLastWeekActivity } from "../usecases/metrics";
-import { Pulse } from "../Pulse/Pulse";
-import { Loading } from "../Loading/Loading";
-import { SlotsInfo } from "../Slots/SlotsInfo";
-import { Chips } from "../Chips/Chips";
-import { useCallback } from "react";
+import styles from "../Project.module.css";
+import { isDeadProject } from "../../usecases/metrics";
+import { Pulse } from "../../Pulse/Pulse";
+import { Loading } from "../../Loading/Loading";
+import { Slots } from "../../Slots/Slots";
+import { Chips } from "../../Chips/Chips";
 
 const cx = classNames.bind(styles);
 
-export default function Project({ openProject, ...project }) {
+export function ProjectModal({ onClick, ...project }) {
   const { title, icon, url, stats, links } = project;
   const link = new URL(url).host;
-  const onClick = useCallback(() => {
-    openProject(project.git);
-  }, [openProject, project.git]);
+
+  const activityByWeeks = stats?.activity.length
+    ? stats?.activity?.map((a) => a.total)
+    : [];
+  const isDead = isDeadProject(activityByWeeks);
 
   if (!stats)
     return (
@@ -26,20 +27,10 @@ export default function Project({ openProject, ...project }) {
       </article>
     );
 
-  const isApiError = stats?.activity.length === undefined;
-  const activityByWeeks = stats?.activity.length
-    ? stats?.activity?.map((a) => a.total)
-    : [];
-  const isDead = isDeadProject(activityByWeeks);
-  const lastActivity = getLastWeekActivity(activityByWeeks);
-
   return (
     <article
+      className={classNames(cx("project"), cx("project_no_shadow"))}
       onClick={onClick}
-      className={cx("project", "project_hover", {
-        ["project_dead"]: !isApiError && isDead,
-        ["project_disabled"]: isApiError,
-      })}
     >
       <div className={cx("project__cover")}></div>
       <img
@@ -70,13 +61,7 @@ export default function Project({ openProject, ...project }) {
         <Pulse activity={activityByWeeks} isDead={isDead} />
       </div>
       <div className={cx("project__section")}>
-        <SlotsInfo project={project} repository={stats.repository} />
-      </div>
-
-      <div className={cx("project__section")}>
-        {isDead && !isApiError && (
-          <div>Последняя активность {lastActivity} нед. назад</div>
-        )}
+        <Slots {...project} repository={stats.repository} />
       </div>
     </article>
   );
