@@ -5,7 +5,8 @@ const projectsConfig = {
     {
       title: "ekaterinburg.design",
       url: "https://ekaterinburg.design/",
-      icon: "logo-site.svg",
+      icon: "/logos/design.svg",
+      cover: "/covers/cover-design-code.png",
       git: "ekaterinburg.design",
       vercel: "edesign",
       links: [
@@ -21,8 +22,9 @@ const projectsConfig = {
     },
     {
       title: "ekaterinburg-ui",
-      url: "https://github.com/ekaterinburgdev/ekaterinburg-ui",
-      icon: "logo-site.svg",
+      url: "https://ekaterinburg-ui.vercel.app/",
+      icon: "/logos/design.svg",
+      cover: "/covers/cover-ui.png",
       git: "ekaterinburg-ui",
       vercel: "edesign",
       links: [
@@ -35,7 +37,8 @@ const projectsConfig = {
     {
       title: "ekaterinburg.io",
       url: "https://ekaterinburg.io/",
-      icon: "logo-site.svg",
+      icon: "/logos/ecosystem.svg",
+      cover: "/covers/cover-io.png",
       git: "ekaterinburg.io",
       vercel: "edesign",
       links: [
@@ -48,7 +51,8 @@ const projectsConfig = {
     {
       title: "ekaterinburg.dev",
       url: "https://ekaterinburg.dev/",
-      icon: "logo-site.svg",
+      icon: "/logos/dev.svg",
+      cover: "/covers/cover-dev.png",
       git: "ekaterinburg.dev",
       vercel: "ekaterinburg-dev",
       links: [
@@ -65,7 +69,8 @@ const projectsConfig = {
     {
       title: "Projects",
       url: "https://projects.ekaterinburg.dev/",
-      icon: "logo-site.svg",
+      icon: "/logos/design.svg",
+      cover: "/covers/cover-projects.png",
       git: "projects",
       vercel: "dev-monitor",
       links: [],
@@ -73,7 +78,8 @@ const projectsConfig = {
     {
       title: "Design Map",
       url: "https://map.ekaterinburg.design/",
-      icon: "logo-site.svg",
+      icon: "/logos/design.svg",
+      cover: "/covers/cover-design-map.png",
       git: "design-map",
       vercel: "emap-ekbdev",
       links: [
@@ -90,7 +96,8 @@ const projectsConfig = {
     {
       title: "Design Guides",
       url: "https://guides.ekaterinburg.design/",
-      icon: "logo-guides.svg",
+      icon: "/logos/guides.svg",
+      cover: "/covers/cover-guides.png",
       git: "guides",
       vercel: "eguides",
       links: [
@@ -107,7 +114,8 @@ const projectsConfig = {
     {
       title: "Street Name Plates",
       url: "https://eplates.vercel.app/",
-      icon: "logo-site.svg",
+      icon: "/logos/logo-eplates.png",
+      cover: "/covers/cover-eplates.png",
       git: "street-name-plates",
       vercel: "eplates",
       links: [
@@ -140,7 +148,8 @@ const projectsConfig = {
     {
       title: "Transport Ecosystem",
       url: "https://transport.ekaterinburg.io/",
-      icon: "logo-transport.svg",
+      icon: "/logos/transport.svg",
+      cover: "/covers/cover-transport.png",
       git: "transport",
       vercel: "ekbdev-transport",
       links: [
@@ -153,7 +162,8 @@ const projectsConfig = {
     {
       title: "Multi Map",
       url: "https://map.ekaterinburg.io/",
-      icon: "logo-map.svg",
+      icon: "/logos/map.svg",
+      cover: "/covers/cover-map.png",
       git: "map",
       vercel: "ekbdev-map",
       links: [
