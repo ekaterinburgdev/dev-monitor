@@ -45,6 +45,7 @@ export default async function handler(req, res) {
       date: pull.updated_at,
       author: pull.user?.login,
       authorAvatar: pull.user?.avatar_url,
+      reviewers: pull.requested_reviewers,
     })),
   });
 }

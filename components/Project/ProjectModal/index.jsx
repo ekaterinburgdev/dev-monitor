@@ -1,5 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "../Project.module.css";
+import { isDeadProject } from "../../usecases/metrics";
 import { Pulse } from "../../Pulse/Pulse";
 import { Loading } from "../../Loading/Loading";
 import { Slots } from "../../Slots/Slots";
@@ -7,9 +8,14 @@ import { Chips } from "../../Chips/Chips";
 
 const cx = classNames.bind(styles);
 
-export function ProjectModal({onClick, ...project}) {
+export function ProjectModal({ onClick, ...project }) {
   const { title, icon, url, stats, links } = project;
   const link = new URL(url).host;
+
+  const activityByWeeks = stats?.activity.length
+    ? stats?.activity?.map((a) => a.total)
+    : [];
+  const isDead = isDeadProject(activityByWeeks);
 
   if (!stats)
     return (
@@ -22,7 +28,10 @@ export function ProjectModal({onClick, ...project}) {
     );
 
   return (
-    <article className={cx("project")} onClick={onClick}>
+    <article
+      className={classNames(cx("project"), cx("project_no_shadow"))}
+      onClick={onClick}
+    >
       <div className={cx("project__cover")}></div>
       <img
         className={cx("project__icon")}
@@ -30,11 +39,7 @@ export function ProjectModal({onClick, ...project}) {
         alt={title}
       />
       <h2 className={cx("project__title")}>
-        <a
-          href={stats.repository.html_url}
-          target="_blank"
-          rel="noreferrer"
-        >
+        <a href={stats.repository.html_url} target="_blank" rel="noreferrer">
           {title}
         </a>
       </h2>
@@ -53,7 +58,7 @@ export function ProjectModal({onClick, ...project}) {
         <Chips links={links} />
       </div>
       <div className={cx("project__section")}>
-        <Pulse activity={stats?.activity} />
+        <Pulse activity={activityByWeeks} isDead={isDead} />
       </div>
       <div className={cx("project__section")}>
         <Slots {...project} repository={stats.repository} />
