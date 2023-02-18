@@ -1,7 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import styles from "./Activity.module.css";
 import { Loading } from "../Loading/Loading";
-import { clearDuplicatedMonth, monthFormatter,commitDateFormatter } from "./utils";
+import {
+  clearDuplicatedMonth,
+  monthFormatter,
+  commitDateFormatter,
+} from "./utils";
 
 const DAY = 1000 * 60 * 60 * 24;
 const SHOW_WEEKS = { S: 20, M: 38, L: 56 };
@@ -80,7 +84,9 @@ export function Activity({ activity }) {
     <div className={styles.graph} aria-hidden>
       <ul className={styles.months}>
         {months.map((m, i) => (
-          <li className={styles.month} key={i}>{m}</li>
+          <li className={styles.month} key={i}>
+            {m}
+          </li>
         ))}
       </ul>
       <ul className={styles.squares}>

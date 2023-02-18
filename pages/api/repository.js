@@ -14,11 +14,6 @@ export default async function handler(req, res) {
     repo,
   });
 
-  const pullsData = await octokit.request("GET /repos/{owner}/{repo}/pulls", {
-    owner,
-    repo,
-  });
-
   const activityData = await octokit.request(
     "GET /repos/{owner}/{repo}/stats/commit_activity",
     {
@@ -39,6 +34,5 @@ export default async function handler(req, res) {
     activity: activityData.data,
     contributors: contributorsData.data,
     repository: repoData.data,
-    pulls: pullsData.data.length,
   });
 }

@@ -1,0 +1,49 @@
+/* Based on https://github.com/reactjs/react-tabs/blob/main/style/react-tabs.css */
+
+.react-tabs {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.react-tabs__tab-list {
+  padding: 0;
+  list-style-type: none;
+  display: inline-flex;
+  column-gap: 12px;
+  margin: 16px 0;
+}
+
+.react-tabs__tab {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: underline;
+  font-size: 15px;
+  text-decoration-color: var(--text-color-third);
+  outline: none;
+}
+
+.react-tabs__tab:hover {
+  color: var(--text-color-primary);
+  text-decoration-color: var(--text-color-primary);
+}
+
+.react-tabs__tab--selected {
+  color: var(--text-color-primary);
+  text-decoration: none;
+}
+
+.react-tabs__tab--disabled {
+  opacity: 0.5;
+  text-decoration: none;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* .react-tabs__tab:focus {} */
+
+.react-tabs__tab-panel {
+  display: none;
+}
+
+.react-tabs__tab-panel--selected {
+  display: block;
+}

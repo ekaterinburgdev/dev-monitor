@@ -14,6 +14,7 @@ const cx = classNames.bind(styles);
 export function Dashboard({ projectsData }) {
   const [activity, setActivity] = useState([]);
   const [contributors, setContributors] = useState([]);
+  const mainProjects = projectsData.filter((p) => !p.parentGit);
 
   useEffect(() => {
     const activity = projectsData
@@ -22,9 +23,8 @@ export function Dashboard({ projectsData }) {
       .flat();
 
     const byWeek = groupBy(activity, (item) => item.week);
-    const byTotal = Object.keys(byWeek)
-      .map((weekstamp) => {
-        const week = byWeek[weekstamp];
+    const byTotal = Object.entries(byWeek)
+      .map(([weekstamp, week]) => {
         return {
           week: weekstamp * 1000,
           days: week
@@ -91,14 +91,18 @@ export function Dashboard({ projectsData }) {
         >
           <h2 className={cx("projects__subtitle")}>
             Contributors{" "}
-            {contributors.length > 0 && <span className={cx("projects__info")}>{contributors.length}</span>}
+            {contributors.length > 0 && (
+              <span className={cx("projects__info")}>
+                {contributors.length}
+              </span>
+            )}
           </h2>
           <Contributors contributors={contributors} />
         </div>
         <div className={cx("projects__section", "projects__section_repos")}>
           <h2 className={cx("projects__subtitle")}>
             Repositories{" "}
-            <span className={cx("projects__info")}>{projectsData.length}</span>
+            <span className={cx("projects__info")}>{mainProjects.length}</span>
           </h2>
           <Projects projectsData={projectsData} />
         </div>

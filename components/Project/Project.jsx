@@ -1,23 +1,21 @@
+import { useCallback } from "react";
+import Image from "next/image";
 import classNames from "classnames/bind";
 import styles from "./Project.module.css";
+// import { isDeadProject, getLastWeekActivity } from "../usecases/metrics";
 import { Pulse } from "../Pulse/Pulse";
 import { Loading } from "../Loading/Loading";
-import { Slots } from "../Slots/Slots";
-import { Chips } from "../Chips/Chips";
-import Image from "next/image";
+// import { Chips } from "../Chips/Chips";
 
 const cx = classNames.bind(styles);
 
-export default function Project({
-  title,
-  cover,
-  icon,
-  url,
-  stats,
-  slots,
-  links,
-}) {
+export default function Project({ openProject, ...project }) {
+  const { title, cover, icon, url, stats, fullStat } = project;
+
   const link = new URL(url).host;
+  const onClick = useCallback(() => {
+    openProject(project.git);
+  }, [openProject, project.git]);
 
   if (!stats)
     return (
@@ -31,8 +29,22 @@ export default function Project({
       </article>
     );
 
+  // const isApiError = stats?.activity.length === undefined;
+  const activityByWeeks = stats?.activity.length
+    ? stats?.activity?.map((a) => a.total)
+    : [];
+  // const isDead = isDeadProject(activityByWeeks);
+  // const lastActivity = getLastWeekActivity(activityByWeeks);
+  const issues = fullStat.issues;
+
   return (
-    <article className={cx("project")}>
+    <article
+      onClick={onClick}
+      className={cx("project", "project_hover", {
+        // ["project_dead"]: !isApiError && isDead,
+        // ["project_disabled"]: isApiError,
+      })}
+    >
       {cover && (
         <Image
           className={cx("project__cover")}
@@ -66,29 +78,20 @@ export default function Project({
         <div className={cx("project__section", "project__description")}>
           {stats.repository.description}
         </div>
-        <div className={cx("project__section")}>
+        {/* <div className={cx("project__section")}>
           <Chips links={links} />
-        </div>
+        </div> */}
         <div className={cx("project__section")}>
-          <Pulse activity={stats?.activity} />
-        </div>
-        <div className={cx("project__section")}>
-          <Chips
-            links={[
-              {
-                name: `Pull requests (${stats.pulls})`,
-                url: `${stats.repository.html_url}/pulls`,
-              },
-              {
-                name: `Issues (${stats.repository.open_issues})`,
-                url: `${stats.repository.html_url}/issues`,
-              },
-            ]}
+          <Pulse
+            activity={activityByWeeks}
+            // isDead={isDead}
           />
         </div>
-        <div className={cx("project__section")}>
-          <Slots url={url} slots={slots} />
-        </div>
+        {issues > 0 && (
+          <div className={cx("project__section")}>
+            {issues} open issue{issues === 1 ? "" : "s"}
+          </div>
+        )}
       </div>
     </article>
   );

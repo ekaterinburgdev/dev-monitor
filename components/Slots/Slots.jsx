@@ -1,55 +1,51 @@
-import styles from "./Slots.module.css";
-import en from "javascript-time-ago/locale/en";
-import TimeAgo from "javascript-time-ago";
+import { Tab, Tabs, TabList, TabPanel } from "../Tabs/Tabs";
+import { DeadBranchesSlots } from "./DeadBranchesSlots";
+import { PullsSlots } from "./PullsSlots";
+import { IssuesSlots } from "./IssuesSlots";
+import { ReadyForReviewPullsSlots } from "./ReadyForReviewPullsSlots";
 
-TimeAgo.addDefaultLocale(en);
-
-const timeAgo = new TimeAgo("en-US");
-const DEFAULT_BRANCH_NAME = "main";
-
-export function Slots({ slots = [], url }) {
-  const slotsWithoutBot = slots.filter((s) => s.commitAuthor !== "web-flow");
+export function Slots({ repository, ...project }) {
+  const repos = [project.git].concat(
+    project?.children?.map((c) => c.git) || []
+  );
 
   return (
-    <ul className={styles.slots}>
-      {slotsWithoutBot.map(
-        ({
-          branch,
-          slotUrl,
-          date,
-          commitMessage,
-          commitUrl,
-          commitAuthor,
-          commitAuthorAvatar,
-        }) => (
-          <li className={styles.slot} key={commitUrl}>
-            <a
-              href={branch === DEFAULT_BRANCH_NAME ? url : slotUrl}
-              target="_blank"
-              rel="noreferrer"
-              className={styles.slot__link}
-            >
-              {branch}, {timeAgo.format(new Date(date))}
-            </a>
-            <div className={styles.slot__info}>
-              {commitAuthor && (
-                <>
-                  <a
-                    href={`https://github.com/${commitAuthor}`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <img src={commitAuthorAvatar} className={styles.slot__avatar} />
-                    {commitAuthor}
-                  </a>
-                  :
-                </>
-              )}{" "}
-              <i>{commitMessage}</i>
-            </div>
-          </li>
-        )
-      )}
-    </ul>
+    <>
+      <Tabs>
+        <TabList>
+          <Tab>
+            Issues{" "}
+            {Boolean(project.fullStat?.issues) &&
+              `(${project.fullStat?.issues})`}
+          </Tab>
+          <Tab>For review</Tab>
+          <Tab>Pulls</Tab>
+          <Tab>Dead branches</Tab>
+        </TabList>
+
+        <TabPanel>
+          <IssuesSlots repos={repos} repositoryUrl={repository.html_url} />
+        </TabPanel>
+
+        <TabPanel>
+          <ReadyForReviewPullsSlots
+            repos={repos}
+            repositoryUrl={repository.html_url}
+          />
+        </TabPanel>
+
+        <TabPanel>
+          <PullsSlots repos={repos} repositoryUrl={repository.html_url} />
+        </TabPanel>
+
+        <TabPanel>
+          <DeadBranchesSlots
+            repos={repos}
+            url={project.url}
+            repositoryUrl={repository.html_url}
+          />
+        </TabPanel>
+      </Tabs>
+    </>
   );
 }
