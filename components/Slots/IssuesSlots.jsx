@@ -3,14 +3,15 @@ import { Loading } from "../Loading/Loading";
 import { useSlots } from "./useSlots";
 import TimeAgo from "../TimeAgo";
 
-export function IssuesSlots({ git, vercel, repositoryUrl }) {
+export function IssuesSlots({ repos, repositoryUrl }) {
   const { loaded, items } = useSlots({
-    git,
-    vercel,
+    repos,
     loadItems: loadIssues,
   });
 
   if (!loaded) return <Loading />;
+
+  if (!items.length) return <p>No issues</p>;
 
   return (
     <ul className={styles.slots}>

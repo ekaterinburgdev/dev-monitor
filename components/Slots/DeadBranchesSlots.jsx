@@ -6,11 +6,10 @@ import { isDeadBranch } from "../usecases/metrics";
 
 const DEFAULT_BRANCH_NAME = "main";
 
-export function DeadBranchesSlots({ git, url, vercel }) {
+export function DeadBranchesSlots({ repos, url, vercel }) {
   const { loaded, items } = useSlots({
-    git,
-    vercel,
-    loadItems: loadBranches,
+    repos,
+    loadItems: (arg) => loadBranches(arg, vercel),
   });
 
   const filterDead = (item) => isDeadBranch(item.date);
@@ -34,7 +33,8 @@ export function DeadBranchesSlots({ git, url, vercel }) {
         }) => (
           <li className={styles.slot} key={commitUrl}>
             <a
-              href={branch === DEFAULT_BRANCH_NAME ? url : slotUrl}
+              // href={branch === DEFAULT_BRANCH_NAME ? url : slotUrl}
+              href={commitUrl}
               target="_blank"
               rel="noreferrer"
               className={styles.slot__link}

@@ -1,4 +1,4 @@
-import styles from "./Pulse.module.css";
+// import styles from "./Pulse.module.css";
 
 function getPercent({ min, max, value }) {
   return (100 * (value - min)) / (max - min);
@@ -11,8 +11,8 @@ const GRAPH_HEIGHT = 50;
 export function Pulse({ activity, isDead }) {
   if (!activity) return null;
 
-  if (!activity.length)
-    return <div className={styles.pulse__error}>Api error</div>;
+  if (!activity.length) return null;
+  // return <div className={styles.pulse__error}>Api error</div>;
 
   const max = Math.max(...activity);
   const formatValues = activity.map((value) =>

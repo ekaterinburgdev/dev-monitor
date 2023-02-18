@@ -1,12 +1,21 @@
+import { useSlots } from "./useSlots";
 import styles from "./Slots.module.css";
+import { Loading } from "../Loading/Loading";
 import TimeAgo from "../TimeAgo";
 
-export function ReadyForReviewPullsSlots({ pulls = [] }) {
-  if (!pulls.length) return <p>No pull requests found</p>;
+export function ReadyForReviewPullsSlots({ repos }) {
+  const { loaded, items } = useSlots({
+    repos,
+    loadItems: loadPulls,
+  });
 
-  const readyForReview = pulls.filter((p) => p.reviewers.length);
+  if (!loaded) return <Loading />;
 
-  if (!readyForReview.length) return <p>No pull requests for review</p>;
+  if (!items.length) return <p>No pull requests found</p>;
+
+  const readyForReview = items.filter((p) => p.reviewers.length);
+
+  if (!readyForReview.length) return <p>No requests for review</p>;
 
   return (
     <ul className={styles.slots}>
@@ -41,4 +50,10 @@ export function ReadyForReviewPullsSlots({ pulls = [] }) {
       })}
     </ul>
   );
+}
+
+async function loadPulls(repo) {
+  const response = await fetch(`/api/pulls?repo=${repo}`);
+
+  return await response.json();
 }

@@ -5,45 +5,45 @@ import { IssuesSlots } from "./IssuesSlots";
 import { ReadyForReviewPullsSlots } from "./ReadyForReviewPullsSlots";
 
 export function Slots({ repository, ...project }) {
-  const pulls = project.stats.pulls;
-  const hasPulls = Boolean(pulls.length);
+  const repos = [project.git].concat(
+    project?.children?.map((c) => c.git) || []
+  );
 
   return (
     <>
       <Tabs>
         <TabList>
-          <Tab>Dead branches</Tab>
-          <Tab>For review</Tab>
-          <Tab disabled={!hasPulls}>Pulls ({pulls.length})</Tab>
           <Tab>
             Issues{" "}
-            {Boolean(repository.open_issues_count) &&
-              `(${repository.open_issues_count})`}
+            {Boolean(project.fullStat?.issues) &&
+              `(${project.fullStat?.issues})`}
           </Tab>
+          <Tab>For review</Tab>
+          <Tab>Pulls</Tab>
+          <Tab>Dead branches</Tab>
         </TabList>
 
         <TabPanel>
-          <DeadBranchesSlots {...project} repositoryUrl={repository.html_url} />
+          <IssuesSlots repos={repos} repositoryUrl={repository.html_url} />
         </TabPanel>
 
         <TabPanel>
           <ReadyForReviewPullsSlots
-            {...project}
-            pulls={pulls}
+            repos={repos}
             repositoryUrl={repository.html_url}
           />
         </TabPanel>
 
         <TabPanel>
-          <PullsSlots
-            {...project}
-            pulls={pulls}
-            repositoryUrl={repository.html_url}
-          />
+          <PullsSlots repos={repos} repositoryUrl={repository.html_url} />
         </TabPanel>
 
         <TabPanel>
-          <IssuesSlots {...project} repositoryUrl={repository.html_url} />
+          <DeadBranchesSlots
+            repos={repos}
+            url={project.url}
+            repositoryUrl={repository.html_url}
+          />
         </TabPanel>
       </Tabs>
     </>

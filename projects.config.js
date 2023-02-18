@@ -5,7 +5,8 @@ const projectsConfig = {
     {
       title: "ekaterinburg.design",
       url: "https://ekaterinburg.design/",
-      icon: "logo-site.svg",
+      icon: "/logos/design.svg",
+      cover: "/covers/cover-design-code.png",
       git: "ekaterinburg.design",
       vercel: "edesign",
       links: [
@@ -20,9 +21,38 @@ const projectsConfig = {
       ],
     },
     {
+      title: "ekaterinburg-ui",
+      url: "https://ekaterinburg-ui.vercel.app/",
+      icon: "/logos/empty-logo.svg",
+      cover: "/covers/cover-ui.png",
+      git: "ekaterinburg-ui",
+      vercel: "edesign",
+      links: [
+        {
+          name: "Figma",
+          url: "https://www.figma.com/file/VpUQ8aZanmAIbwlSt5UTKH/%F0%9F%9A%B2-Ekaterinburg.design?node-id=3862%3A4353&t=4st48NCavDjuF4k4-0",
+        },
+      ],
+    },
+    {
+      title: "ekaterinburg.io",
+      url: "https://ekaterinburg.io/",
+      icon: "/logos/ecosystem.svg",
+      cover: "/covers/cover-io.png",
+      git: "ekaterinburg.io",
+      vercel: "edesign",
+      links: [
+        {
+          name: "Figma",
+          url: "https://www.figma.com/file/VpUQ8aZanmAIbwlSt5UTKH/%F0%9F%9A%B2-Ekaterinburg.design?node-id=3862%3A4353&t=4st48NCavDjuF4k4-0",
+        },
+      ],
+    },
+    {
       title: "ekaterinburg.dev",
       url: "https://ekaterinburg.dev/",
-      icon: "logo-site.svg",
+      icon: "/logos/dev.svg",
+      cover: "/covers/cover-dev.png",
       git: "ekaterinburg.dev",
       vercel: "ekaterinburg-dev",
       links: [
@@ -39,7 +69,8 @@ const projectsConfig = {
     {
       title: "Projects",
       url: "https://projects.ekaterinburg.dev/",
-      icon: "logo-site.svg",
+      icon: "/logos/empty-logo.svg",
+      cover: "/covers/cover-projects.png",
       git: "projects",
       vercel: "dev-monitor",
       links: [],
@@ -47,7 +78,8 @@ const projectsConfig = {
     {
       title: "Design Map",
       url: "https://map.ekaterinburg.design/",
-      icon: "logo-site.svg",
+      icon: "/logos/design.svg",
+      cover: "/covers/cover-design-map.png",
       git: "design-map",
       vercel: "emap-ekbdev",
       links: [
@@ -64,7 +96,8 @@ const projectsConfig = {
     {
       title: "Design Guides",
       url: "https://guides.ekaterinburg.design/",
-      icon: "logo-guides.svg",
+      icon: "/logos/guides.svg",
+      cover: "/covers/cover-guides.png",
       git: "guides",
       vercel: "eguides",
       links: [
@@ -81,7 +114,8 @@ const projectsConfig = {
     {
       title: "Street Name Plates",
       url: "https://eplates.vercel.app/",
-      icon: "logo-site.svg",
+      icon: "/logos/logo-eplates.png",
+      cover: "/covers/cover-eplates.png",
       git: "street-name-plates",
       vercel: "eplates",
       links: [
@@ -114,7 +148,8 @@ const projectsConfig = {
     {
       title: "Transport Ecosystem",
       url: "https://transport.ekaterinburg.io/",
-      icon: "logo-transport.svg",
+      icon: "/logos/transport.svg",
+      cover: "/covers/cover-transport.png",
       git: "transport",
       vercel: "ekbdev-transport",
       links: [
@@ -127,7 +162,8 @@ const projectsConfig = {
     {
       title: "Multi Map",
       url: "https://map.ekaterinburg.io/",
-      icon: "logo-map.svg",
+      icon: "/logos/map.svg",
+      cover: "/covers/cover-map.png",
       git: "map",
       vercel: "ekbdev-map",
       links: [
@@ -139,6 +175,36 @@ const projectsConfig = {
         { name: "API", url: "http://51.178.191.76:1337/documentation/v1.0.0" },
         { name: "Leaflet docs", url: "https://map-docs.vercel.app/" },
       ],
+    },
+    {
+      parentGit: "transport",
+      title: "Transport backend",
+      url: "https://transport.ekaterinburg.io/",
+      icon: "/logos/transport.svg",
+      cover: "/covers/cover-transport.png",
+      git: "transport-api",
+      vercel: "",
+      links: [],
+    },
+    {
+      parentGit: "map",
+      title: "map cms",
+      url: "https://map.ekaterinburg.io/",
+      icon: "/logos/map.svg",
+      cover: "/covers/cover-map.png",
+      git: "map-cms",
+      vercel: "",
+      links: [],
+    },
+    {
+      parentGit: "guides",
+      title: "guides-api",
+      url: "https://guides.ekaterinburg.io/",
+      icon: "/logos/guides.svg",
+      cover: "/covers/cover-guides.png",
+      git: "guides-api",
+      vercel: "",
+      links: [],
     },
   ],
 };

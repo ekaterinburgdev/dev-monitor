@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 
-export function useSlots({ git, vercel, loadItems }) {
+export function useSlots({ repos, loadItems }) {
   const [items, setItems] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
   const init = async () => {
     if (loaded) return;
 
-    const itemsData = await loadItems(git, vercel);
+    const itemsData = await Promise.all(repos.map((git) => loadItems(git)));
 
-    setItems(itemsData);
+    setItems(itemsData?.flat());
     setLoaded(true);
   };
 

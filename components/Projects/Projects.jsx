@@ -9,9 +9,24 @@ const cx = classNames.bind(styles);
 export default function Projects({ projectsData }) {
   const { isOpen, open, close, data: openedProjectId } = useModal();
 
-  let sortedProjects = projectsData;
+  let sortedProjects = projectsData
+    .filter((p) => !p.parentGit) // hide sub git repositories
+    .map((p) => ({
+      ...p,
+      // add children projects
+      children: projectsData.filter((pp) => p.git === pp.parentGit),
+    }))
+    .map((p) => ({
+      ...p,
+      fullStat: {
+        issues: [p?.stats]
+          .concat(p?.children.map((c) => c.stats))
+          ?.reduce((all, item) => all + item?.repository.open_issues_count, 0),
+      },
+    }));
+
   try {
-    sortedProjects = projectsData.sort((a, b) => {
+    sortedProjects = sortedProjects.sort((a, b) => {
       const aDate = new Date(a.stats.repository.pushed_at);
       const bDate = new Date(b.stats.repository.pushed_at);
       if (bDate < aDate) {

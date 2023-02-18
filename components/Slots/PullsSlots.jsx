@@ -1,7 +1,16 @@
+import { useSlots } from "./useSlots";
+import { Loading } from "../Loading/Loading";
 import styles from "./Slots.module.css";
 import TimeAgo from "../TimeAgo";
 
-export function PullsSlots({ pulls = [] }) {
+export function PullsSlots({ repos }) {
+  const { loaded, items: pulls } = useSlots({
+    repos,
+    loadItems: loadPulls,
+  });
+
+  if (!loaded) return <Loading />;
+
   if (!pulls.length) return <p>No pull requests found</p>;
 
   return (
@@ -37,4 +46,10 @@ export function PullsSlots({ pulls = [] }) {
       })}
     </ul>
   );
+}
+
+async function loadPulls(repo) {
+  const response = await fetch(`/api/pulls?repo=${repo}`);
+
+  return await response.json();
 }

@@ -1,8 +1,8 @@
 .project {
-  border-radius: 8px;
+  --project-card-border-radius: 8px;
+  border-radius: var(--project-card-border-radius);
   background-color: var(--project-card-color);
   break-inside: avoid;
-  padding: 40px 48px 40px 64px;
   box-shadow: 0 3px 12px -2px var(--project-card-shadow);
   position: relative;
   transition: all 0.3s;
@@ -26,6 +26,7 @@
 
 .project_disabled {
   opacity: 0.5;
+  box-shadow: 0 3px 12px -2px rgba(17, 12, 46, 0.15);
 }
 
 .project__icon {
@@ -35,7 +36,26 @@
   border-radius: 100px;
   position: absolute;
   left: 20px;
-  top: 48px;
+  top: 20px;
+  background-color: black;
+}
+
+.project__cover {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: cover;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--project-card-border-radius)
+    var(--project-card-border-radius) 0 0;
+}
+
+.project__loader {
+  padding: 16px 20px;
+}
+.project__content {
+  padding: 12px 48px 40px 64px;
+  position: relative;
 }
 
 .project__section {
@@ -56,7 +76,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .project {
+  .project__content {
     padding: 16px 20px;
   }
 
@@ -64,5 +84,11 @@
     position: relative;
     top: initial;
     left: initial;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .project__cover {
+    mix-blend-mode: lighten;
   }
 }
