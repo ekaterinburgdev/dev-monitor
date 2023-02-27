@@ -13,8 +13,8 @@ body {
 }
 
 body {
-  background-color: var(--bg-color);
-  color: var(--text-color-primary);
+  background-color: rgb(var(--bg-color));
+  color: rgb(var(--text-color-primary));
 }
 
 h1,
@@ -29,10 +29,10 @@ ul {
 
 a {
   color: inherit;
-  text-decoration-color: var(--text-color-third);
+  text-decoration-color: rgb(var(--text-color-third), 0.5);
 }
 
 a:hover {
-  color: var(--text-color-primary);
-  text-decoration-color: var(--text-color-primary);
+  color: rgb(var(--text-color-primary));
+  text-decoration-color: rgb(var(--text-color-third), 0.8);
 }

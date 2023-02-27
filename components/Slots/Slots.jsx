@@ -5,10 +5,6 @@ import { IssuesSlots } from "./IssuesSlots";
 import { ReadyForReviewPullsSlots } from "./ReadyForReviewPullsSlots";
 
 export function Slots({ repository, ...project }) {
-  const repos = [project.git].concat(
-    project?.children?.map((c) => c.git) || []
-  );
-
   return (
     <>
       <Tabs>
@@ -24,23 +20,23 @@ export function Slots({ repository, ...project }) {
         </TabList>
 
         <TabPanel>
-          <IssuesSlots repos={repos} repositoryUrl={repository.html_url} />
+          <IssuesSlots project={project} repositoryUrl={repository.html_url} />
         </TabPanel>
 
         <TabPanel>
           <ReadyForReviewPullsSlots
-            repos={repos}
+            project={project}
             repositoryUrl={repository.html_url}
           />
         </TabPanel>
 
         <TabPanel>
-          <PullsSlots repos={repos} repositoryUrl={repository.html_url} />
+          <PullsSlots project={project} repositoryUrl={repository.html_url} />
         </TabPanel>
 
         <TabPanel>
           <DeadBranchesSlots
-            repos={repos}
+            project={project}
             url={project.url}
             repositoryUrl={repository.html_url}
           />

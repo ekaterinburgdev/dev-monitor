@@ -1,30 +1,29 @@
 :root {
-  --bg-color: #000;
+  --bg-color: 0 0 0;
 
-  --text-color-primary: #ffffff;
-  --text-color-secondary: #a5b4d2;
-  --text-color-third: #55647d;
+  --text-color-primary: 255 255 255;
+  --text-color-secondary: 165, 180, 210;
+  --text-color-third: 85, 100, 125;
 
-  --bg-color-danger: #411e1e;
-  --text-color-danger: #c52a2a;
+  --bg-color-danger: 65, 30, 30;
+  --text-color-danger: 197, 42, 42;
 
-  --project-card-color: #1e2841;
-  --project-card-shadow: rgba(17, 12, 46, 0.15);
+  --project-card-color: 30, 40, 65;
 
-  --activity-color-primary: #c6e48b;
-  --activity-color-secondary: #7bc96f;
-  --activity-color-third: #196127;
+  --activity-color-primary: 198, 228, 139;
+  --activity-color-secondary: 123, 201, 111;
+  --activity-color-third: 25, 97, 39;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --bg-color: white;
-    --bg-color-danger: #fff7f7;
+    --bg-color: 242 242 242;
+    --bg-color-danger: 255, 247, 247;
 
-    --text-color-primary: black;
-    --text-color-secondary: #55647d;
-    --text-color-third: #a5b4d2;
+    --text-color-primary: 0 0 0;
+    --text-color-secondary: 85, 100, 125;
+    --text-color-third: 165, 180, 210;
 
-    --project-card-color: #fff;
+    --project-card-color: 255 255 255;
   }
 }

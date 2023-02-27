@@ -10,13 +10,8 @@ import { Chips } from "../../Chips/Chips";
 const cx = classNames.bind(styles);
 
 export function ProjectModal({ onClick, ...project }) {
-  const { title, icon, url, stats, links, cover } = project;
+  const { title, icon, url, stats, links } = project;
   const link = new URL(url).host;
-
-  // const activityByWeeks = stats?.activity.length
-  //   ? stats?.activity?.map((a) => a.total)
-  //   : [];
-  // const isDead = isDeadProject(activityByWeeks);
 
   if (!stats)
     return (
@@ -33,15 +28,6 @@ export function ProjectModal({ onClick, ...project }) {
       className={classNames(cx("project"), cx("project_no_shadow"))}
       onClick={onClick}
     >
-      {/* {cover && (
-        <Image
-          className={cx("project__cover")}
-          src={cover}
-          alt={title}
-          width="640"
-          height="400"
-        />
-      )} */}
       <div className={cx("project__content")}>
         <Image
           className={cx("project__icon")}
@@ -55,30 +41,7 @@ export function ProjectModal({ onClick, ...project }) {
             {title}
           </a>
         </h2>
-        {/* <a
-          href={url}
-          className={cx("project__link")}
-          target="_blank"
-          rel="noreferrer"
-        >
-          {link}
-        </a> */}
-        {/* <div className={cx("project__section", "project__description")}>
-          {stats.repository.description}
-        </div> */}
-        {/* <div className={cx("project__section")}> */}
-        <Chips
-          links={[
-            {
-              name: link,
-              url,
-            },
-          ].concat(links)}
-        />
-        {/* </div> */}
-        {/* <div className={cx("project__section")}>
-          <Pulse activity={activityByWeeks} isDead={isDead} />
-        </div> */}
+        <Chips links={[{ name: link, url }].concat(links)} />
         <div className={cx("project__section")}>
           <Slots {...project} repository={stats.repository} />
         </div>

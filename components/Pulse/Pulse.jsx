@@ -1,4 +1,4 @@
-// import styles from "./Pulse.module.css";
+import styles from "./Pulse.module.css";
 
 function getPercent({ min, max, value }) {
   return (100 * (value - min)) / (max - min);
@@ -33,10 +33,15 @@ export function Pulse({ activity, isDead }) {
     : css.getPropertyValue("--activity-color-secondary");
 
   return (
-    <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height}>
+    <svg
+      className={styles.pulse}
+      viewBox={`0 0 ${width} ${height}`}
+      width={width}
+      height={height}
+    >
       <polyline
         fill="none"
-        stroke={color}
+        stroke={`rgb(${color})`}
         strokeWidth={STROKE_WIDTH}
         points={points}
         strokeLinejoin="round"

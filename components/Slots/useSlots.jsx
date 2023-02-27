@@ -1,13 +1,23 @@
 import { useState, useEffect } from "react";
 
-export function useSlots({ repos, loadItems }) {
+export function useSlots({ project, loadItems }) {
   const [items, setItems] = useState([]);
   const [loaded, setLoaded] = useState(false);
+
+  const projects = [project].concat(project?.children).filter((p) => p?.git);
 
   const init = async () => {
     if (loaded) return;
 
-    const itemsData = await Promise.all(repos.map((git) => loadItems(git)));
+    const itemsData = await Promise.all(
+      projects.map(async (project) => {
+        const items = await loadItems(project.git);
+        return items.map((item) => ({
+          ...item,
+          repository: project?.stats?.repository,
+        }));
+      })
+    );
 
     setItems(itemsData?.flat());
     setLoaded(true);
