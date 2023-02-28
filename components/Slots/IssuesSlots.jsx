@@ -2,35 +2,41 @@ import styles from "./Slots.module.css";
 import { Loading } from "../Loading/Loading";
 import { useSlots } from "./useSlots";
 
-export function IssuesSlots({ project, repositoryUrl }) {
-  const { loaded, items } = useSlots({
+export function IssuesSlots({ project }) {
+  const { loaded, repos, projects } = useSlots({
     project,
     loadItems: loadIssues,
   });
 
   if (!loaded) return <Loading />;
 
-  if (!items.length) return <p>No issues</p>;
+  if (!repos.length) return <p>No issues</p>;
 
   return (
-    <ul className={styles.slots}>
-      {items.map(({ title, url, repository }) => {
-        const description =
-          project.stats.repository.name !== repository.name
-            ? [repository.language, repository.name]
-            : [repository.language];
-
+    <ul className={styles.sections}>
+      {repos.map(([name, items]) => {
+        const repo = projects[name]?.stats.repository;
         return (
-          <li className={styles.slot} key={url}>
-            <a
-              href={url}
-              target="_blank"
-              rel="noreferrer"
-              className={styles.slot__link}
-            >
-              {title}
+          <li className={styles.section} key={name}>
+            <a href={repo.html_url} className={styles.sections__label}>
+              {name} ({repo.language})
             </a>
-            <div className={styles.slot__info}>{description.join(" • ")}</div>
+            <ul className={styles.slots}>
+              {items.map(({ title, url }) => {
+                return (
+                  <li className={styles.slot} key={url}>
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={styles.slot__link}
+                    >
+                      {title}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
           </li>
         );
       })}

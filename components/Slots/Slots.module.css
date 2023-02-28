@@ -27,3 +27,42 @@
 .slot__mark {
   color: rgb(var(--text-color-third));
 }
+
+.sections__label {
+  font-weight: bold;
+  color: rgb(var(--text-color-primary));
+  margin: 16px 0;
+  position: relative;
+  font-size: 20px;
+}
+
+.sections__label:before {
+  content: "";
+  position: absolute;
+  left: -40px;
+  background-image: url(../../public/github.svg);
+  background-size: cover;
+  width: 24px;
+  height: 24px;
+}
+
+.sections {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1000px) {
+  .sections__label {
+    padding-left: 32px;
+  }
+  .sections__label:before {
+    left: 0;
+  }
+}

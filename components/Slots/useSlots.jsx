@@ -1,3 +1,4 @@
+import { groupBy } from "lodash";
 import { useState, useEffect } from "react";
 
 export function useSlots({ project, loadItems }) {
@@ -31,5 +32,10 @@ export function useSlots({ project, loadItems }) {
   return {
     loaded,
     items,
+    projects: projects.reduce((acc, project) => {
+      acc[project.git] = project;
+      return acc;
+    }, {}),
+    repos: Object.entries(groupBy(items, (item) => item.repository.name)),
   };
 }
