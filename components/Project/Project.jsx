@@ -62,36 +62,36 @@ export default function Project({ openProject, ...project }) {
           width="28"
           height="28"
         />
-        <h2 className={cx("project__title")}>
-          <a href={stats.repository.html_url} target="_blank" rel="noreferrer">
-            {title}
-          </a>
-        </h2>
-        <a
-          href={url}
-          className={cx("project__link")}
-          target="_blank"
-          rel="noreferrer"
-        >
-          {link}
-        </a>
+        <h2 className={cx("project__title")}>{title}</h2>
         <div className={cx("project__section", "project__description")}>
           {stats.repository.description}
+        </div>
+        <div className={cx("project__section")}>
+          <a
+            href={url}
+            className={cx("project__link")}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {link}
+          </a>
         </div>
         {/* <div className={cx("project__section")}>
           <Chips links={links} />
         </div> */}
+        {issues > 0 && (
+          <div className={cx("project__section")}>
+            <div className={cx("project__label")}>
+              {issues} open issue{issues === 1 ? "" : "s"}
+            </div>
+          </div>
+        )}
         <div className={cx("project__section")}>
           <Pulse
             activity={activityByWeeks}
             // isDead={isDead}
           />
         </div>
-        {issues > 0 && (
-          <div className={cx("project__section")}>
-            {issues} open issue{issues === 1 ? "" : "s"}
-          </div>
-        )}
       </div>
     </article>
   );

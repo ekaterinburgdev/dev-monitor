@@ -1,4 +1,7 @@
+.pulse {
+}
+
 .pulse__error {
   font-size: 20px;
-  color: var(--text-color-primary);
+  color: rgb(var(--text-color-primary));
 }

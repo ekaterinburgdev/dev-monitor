@@ -21,7 +21,7 @@
 }
 
 .projects__info {
-  color: var(--text-color-third);
+  color: rgb(var(--text-color-third));
 }
 
 .projects__grid {

@@ -12,6 +12,6 @@
 }
 
 .chips__item:hover {
-  color: var(--text-color-primary);
+  color: rgb(var(--text-color-primary));
   cursor: pointer;
 }

@@ -1,11 +1,10 @@
 import { useSlots } from "./useSlots";
 import { Loading } from "../Loading/Loading";
 import styles from "./Slots.module.css";
-import TimeAgo from "../TimeAgo";
 
-export function PullsSlots({ repos }) {
+export function PullsSlots({ project }) {
   const { loaded, items: pulls } = useSlots({
-    repos,
+    project,
     loadItems: loadPulls,
   });
 
@@ -15,7 +14,7 @@ export function PullsSlots({ repos }) {
 
   return (
     <ul className={styles.slots}>
-      {pulls.map(({ title, url, date, author, authorAvatar }) => {
+      {pulls.map(({ title, url, repository }) => {
         return (
           <li className={styles.slot} key={url}>
             <a
@@ -26,21 +25,7 @@ export function PullsSlots({ repos }) {
             >
               {title}
             </a>
-            <div className={styles.slot__info}>
-              {author && (
-                <>
-                  <a
-                    href={`https://github.com/${author}`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <img src={authorAvatar} className={styles.slot__avatar} />
-                    {author}
-                  </a>
-                  , <TimeAgo date={date} />
-                </>
-              )}
-            </div>
+            <div className={styles.slot__info}>{repository.language}</div>
           </li>
         );
       })}

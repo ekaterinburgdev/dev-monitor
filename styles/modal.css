@@ -1,7 +1,7 @@
 .react-modal-sheet-container,
 .react-modal-sheet-header,
 .react-modal-sheet-content {
-  background-color: var(--project-card-color) !important;
+  background-color: rgv(var(--project-card-color)) !important;
 }
 
 .react-modal-sheet-backdrop {
@@ -20,12 +20,13 @@
 
 @media screen and (min-width: 768px) {
   .react-modal-sheet-container {
-    width: 40% !important;
+    width: 100% !important;
     max-width: 500px !important;
     height: calc(100vh - 2vw) !important;
     right: 0.5vw !important;
     left: auto !important;
     top: 0.5vw !important;
+    box-shadow: none !important;
   }
 
   .react-modal-sheet-header,

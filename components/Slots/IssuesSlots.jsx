@@ -1,11 +1,10 @@
 import styles from "./Slots.module.css";
 import { Loading } from "../Loading/Loading";
 import { useSlots } from "./useSlots";
-import TimeAgo from "../TimeAgo";
 
-export function IssuesSlots({ repos, repositoryUrl }) {
+export function IssuesSlots({ project, repositoryUrl }) {
   const { loaded, items } = useSlots({
-    repos,
+    project,
     loadItems: loadIssues,
   });
 
@@ -15,7 +14,12 @@ export function IssuesSlots({ repos, repositoryUrl }) {
 
   return (
     <ul className={styles.slots}>
-      {items.map(({ title, url, date, author, authorAvatar }) => {
+      {items.map(({ title, url, repository }) => {
+        const description =
+          project.stats.repository.name !== repository.name
+            ? [repository.language, repository.name]
+            : [repository.language];
+
         return (
           <li className={styles.slot} key={url}>
             <a
@@ -26,35 +30,10 @@ export function IssuesSlots({ repos, repositoryUrl }) {
             >
               {title}
             </a>
-            <div className={styles.slot__info}>
-              {author && (
-                <>
-                  <a
-                    href={`https://github.com/${author}`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <img src={authorAvatar} className={styles.slot__avatar} />
-                    {author}
-                  </a>
-                  , <TimeAgo date={date} />
-                </>
-              )}
-            </div>
+            <div className={styles.slot__info}>{description.join(" • ")}</div>
           </li>
         );
       })}
-
-      <li className={styles.slot}>
-        <a
-          href={`${repositoryUrl}/issues`}
-          target="_blank"
-          rel="noreferrer"
-          className={styles.slot__link}
-        >
-          All issues
-        </a>
-      </li>
     </ul>
   );
 }
