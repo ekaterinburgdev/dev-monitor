@@ -14,10 +14,9 @@
 
 .contributor__avatar {
   border-radius: 100%;
-  max-width: 90px;
-  min-width: 35px;
+  width: 45px;
+  height: 45px;
   transition: all 0.1s ease-out;
-  height: auto;
 }
 
 .contributor__contributions {

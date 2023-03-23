@@ -18,8 +18,6 @@ export function Contributors({ contributors }) {
               src={contributor.avatar_url}
               className={styles.contributor__avatar}
               alt={contributor.login}
-              width={contributor.contributions / 2}
-              height={contributor.contributions / 2}
             />
             <div className={styles.contributor__contributions}>
               {contributor.contributions}
