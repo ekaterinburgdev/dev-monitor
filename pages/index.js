@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import projectsConfig from "../projects.config";
 import { Dashboard } from "../components/Dashboard/Dashboard";
 
-function Home() {
+function Home({ isWidgetVersion = false }) {
   const [projects, setProjectsData] = useState(projectsConfig.projects);
   const [loaded, setLoaded] = useState(false);
 
@@ -27,7 +27,9 @@ function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <Dashboard projectsData={projects} />;
+  return (
+    <Dashboard isWidgetVersion={isWidgetVersion} projectsData={projects} />
+  );
 }
 
 async function loadRepoInfo(repo) {

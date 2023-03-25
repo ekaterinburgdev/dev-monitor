@@ -11,7 +11,7 @@ import styles from "./Dashboard.module.css";
 
 const cx = classNames.bind(styles);
 
-export function Dashboard({ projectsData }) {
+export function Dashboard({ projectsData, isWidgetVersion }) {
   const [activity, setActivity] = useState([]);
   const [contributors, setContributors] = useState([]);
   const mainProjects = projectsData.filter((p) => !p.parentGit);
@@ -73,7 +73,9 @@ export function Dashboard({ projectsData }) {
 
   return (
     <div className={cx("projects")}>
-      <h1 className={cx("projects__title")}>ekaterinburg.dev projects</h1>
+      {!isWidgetVersion && (
+        <h1 className={cx("projects__title")}>ekaterinburg.dev projects</h1>
+      )}
       <div className={cx("projects__grid")}>
         <div className={cx("projects__section", "projects__section_activity")}>
           <h2 className={cx("projects__subtitle")}>
