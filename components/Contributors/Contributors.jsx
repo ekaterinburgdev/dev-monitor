@@ -1,5 +1,5 @@
 import styles from "./Contributors.module.css";
-import { Loading } from '../Loading/Loading';
+import { Loading } from "../Loading/Loading";
 
 export function Contributors({ contributors }) {
   if (!contributors.length) return <Loading />;
@@ -18,8 +18,8 @@ export function Contributors({ contributors }) {
               src={contributor.avatar_url}
               className={styles.contributor__avatar}
               alt={contributor.login}
-              width={contributor.contributions / 2}
-              height={contributor.contributions / 2}
+              width={40}
+              height={40}
             />
             <div className={styles.contributor__contributions}>
               {contributor.contributions}

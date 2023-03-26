@@ -30,6 +30,7 @@ ul {
 a {
   color: inherit;
   text-decoration-color: rgb(var(--text-color-third), 0.5);
+  text-underline-offset: 4px;
 }
 
 a:hover {

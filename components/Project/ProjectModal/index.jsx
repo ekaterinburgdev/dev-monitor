@@ -36,11 +36,7 @@ export function ProjectModal({ onClick, ...project }) {
           width="28"
           height="28"
         />
-        <h2 className={cx("project__title")}>
-          <a href={stats.repository.html_url} target="_blank" rel="noreferrer">
-            {title}
-          </a>
-        </h2>
+        <h2 className={cx("project__title")}>{title}</h2>
         <Chips links={[{ name: link, url }].concat(links)} />
         <div className={cx("project__section")}>
           <Slots {...project} repository={stats.repository} />
