@@ -94,8 +94,6 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .project__cover {
-    mix-blend-mode: lighten;
-  }
+[data-theme="dark"] .project__cover {
+  mix-blend-mode: lighten;
 }
