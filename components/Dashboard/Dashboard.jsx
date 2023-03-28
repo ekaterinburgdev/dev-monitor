@@ -106,7 +106,10 @@ export function Dashboard({ projectsData, isWidgetVersion }) {
             Repositories{" "}
             <span className={cx("projects__info")}>{mainProjects.length}</span>
           </h2>
-          <Projects projectsData={projectsData} />
+          <Projects
+            isWidgetVersion={isWidgetVersion}
+            projectsData={projectsData}
+          />
         </div>
       </div>
     </div>

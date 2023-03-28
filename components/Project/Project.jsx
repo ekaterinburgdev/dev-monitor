@@ -14,8 +14,8 @@ export default function Project({ openProject, ...project }) {
 
   const link = new URL(url).host;
   const onClick = useCallback(() => {
-    openProject(project.git);
-  }, [openProject, project.git]);
+    openProject(project);
+  }, [openProject, project]);
 
   if (!stats)
     return (

@@ -6,7 +6,7 @@ import { Modal, useModal } from "../Modal";
 
 const cx = classNames.bind(styles);
 
-export default function Projects({ projectsData }) {
+export default function Projects({ isWidgetVersion, projectsData }) {
   const { isOpen, open, close, data: openedProjectId } = useModal();
 
   let sortedProjects = projectsData
@@ -41,14 +41,24 @@ export default function Projects({ projectsData }) {
 
   const selectedProject = sortedProjects.find((p) => p.git === openedProjectId);
 
+  const onProjectClick = (project) => {
+    if (isWidgetVersion) {
+      window.location.href = project.stats.repository.html_url;
+    } else {
+      open(project.git);
+    }
+  };
+
   return (
     <div className={cx("project-list")}>
-      <Modal isOpen={isOpen} close={close}>
-        {isOpen && selectedProject && <ProjectModal {...selectedProject} />}
-      </Modal>
+      {isWidgetVersion && (
+        <Modal isOpen={isOpen} close={close}>
+          {isOpen && selectedProject && <ProjectModal {...selectedProject} />}
+        </Modal>
+      )}
       {sortedProjects.map((project) => (
         <div className={cx("project-list__item")} key={project.git}>
-          <Project {...project} openProject={open} />
+          <Project {...project} openProject={onProjectClick} />
         </div>
       ))}
     </div>
