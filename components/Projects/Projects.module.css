@@ -1,11 +1,10 @@
 .project-list {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 24px;
+  grid-gap: 24px;
 }
 
 .project-list__item {
-  margin-bottom: 24px;
   min-width: 300px;
   max-width: 600px;
 }

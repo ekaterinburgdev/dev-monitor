@@ -43,7 +43,7 @@ export default function Projects({ isWidgetVersion, projectsData }) {
 
   const onProjectClick = (project) => {
     if (isWidgetVersion) {
-      window.location.href = project.stats.repository.html_url;
+      window.parent.location.href = project.stats.repository.html_url;
     } else {
       open(project.git);
     }
@@ -51,7 +51,7 @@ export default function Projects({ isWidgetVersion, projectsData }) {
 
   return (
     <div className={cx("project-list")}>
-      {isWidgetVersion && (
+      {!isWidgetVersion && (
         <Modal isOpen={isOpen} close={close}>
           {isOpen && selectedProject && <ProjectModal {...selectedProject} />}
         </Modal>
