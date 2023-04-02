@@ -3,10 +3,14 @@ import Home from "./";
 
 export default function Widget() {
   useEffect(() => {
-    setTimeout(() => {
+    const interval = setInterval(() => {
       const height = document.documentElement.scrollHeight;
       window.parent.postMessage({ type: "iframeHeight", height }, "*");
-    }, 1000);
+    }, 1500);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
   return <Home isWidgetVersion />;
 }
