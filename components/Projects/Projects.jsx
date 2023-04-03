@@ -43,7 +43,7 @@ export default function Projects({ isWidgetVersion, projectsData }) {
 
   const onProjectClick = (project) => {
     if (isWidgetVersion) {
-      window.parent.location.href = project.stats.repository.html_url;
+      window.parent.open(project.stats.repository.html_url, '_blank')
     } else {
       open(project.git);
     }
