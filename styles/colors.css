@@ -8,7 +8,7 @@
   --bg-color-danger: 65, 30, 30;
   --text-color-danger: 197, 42, 42;
 
-  --project-card-color: 30, 40, 65;
+  --project-card-color: 30, 40, 65, .6;
 
   --activity-color-primary: 198, 228, 139;
   --activity-color-secondary: 123, 201, 111;
