@@ -15,6 +15,8 @@ export function Dashboard({ projectsData, isWidgetVersion }) {
   const [activity, setActivity] = useState([]);
   const [contributors, setContributors] = useState([]);
   const mainProjects = projectsData.filter((p) => !p.parentGit);
+  const numberOfProjects = mainProjects.length;
+  const numberOfRepos = projectsData.length;
 
   useEffect(() => {
     const activity = projectsData
@@ -102,10 +104,12 @@ export function Dashboard({ projectsData, isWidgetVersion }) {
           <Contributors contributors={contributors} />
         </div>
         <div className={cx("projects__section", "projects__section_repos")}>
-          <h2 className={cx("projects__subtitle")}>
+          <div className={cx("projects__subtitle")}>
+            Projects {" "}
+            <span className={cx("projects__info")}>{numberOfProjects}</span> ·
             Repositories{" "}
-            <span className={cx("projects__info")}>{mainProjects.length}</span>
-          </h2>
+            <span className={cx("projects__info")}>{numberOfRepos}</span>
+          </div>
           <Projects
             isWidgetVersion={isWidgetVersion}
             projectsData={projectsData}
