@@ -42,9 +42,7 @@ export default function Projects({ isWidgetVersion, projectsData }) {
   const selectedProject = sortedProjects.find((p) => p.git === openedProjectId);
 
   const onProjectClick = (project) => {
-    if (isWidgetVersion) {
-      window.parent.location.href = project.stats.repository.html_url;
-    } else {
+    if (!isWidgetVersion) {
       open(project.git);
     }
   };
@@ -58,7 +56,11 @@ export default function Projects({ isWidgetVersion, projectsData }) {
       )}
       {sortedProjects.map((project) => (
         <div className={cx("project-list__item")} key={project.git}>
-          <Project {...project} openProject={onProjectClick} />
+          <Project 
+            widgetLink={isWidgetVersion && project?.stats?.repository.html_url}
+            openProject={onProjectClick}
+            {...project} 
+          />
         </div>
       ))}
     </div>

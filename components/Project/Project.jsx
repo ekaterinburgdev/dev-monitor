@@ -9,10 +9,10 @@ import { Loading } from "../Loading/Loading";
 
 const cx = classNames.bind(styles);
 
-export default function Project({ openProject, ...project }) {
+export default function Project({ widgetLink, openProject, ...project }) {
   const { title, cover, icon, url, stats, fullStat } = project;
 
-  const link = new URL(url).host;
+  const siteLink = new URL(url).host;
   const onClick = useCallback(() => {
     openProject(project);
   }, [openProject, project]);
@@ -73,7 +73,7 @@ export default function Project({ openProject, ...project }) {
             target="_blank"
             rel="noreferrer"
           >
-            {link}
+            {siteLink}
           </a>
         </div>
         {/* <div className={cx("project__section")}>
@@ -89,10 +89,15 @@ export default function Project({ openProject, ...project }) {
         <div className={cx("project__section")}>
           <Pulse
             activity={activityByWeeks}
-            // isDead={isDead}
+          // isDead={isDead}
           />
         </div>
       </div>
+      {widgetLink && (
+        <a href={widgetLink} className={cx("project__widgetLink")} target="_blank" rel="noreferrer">
+          Open repository
+        </a>
+      )}
     </article>
   );
 }

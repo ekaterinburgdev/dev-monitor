@@ -71,6 +71,8 @@
 }
 
 .project__link {
+  position: relative;
+  z-index: 1;
   color: rgb(var(--text-color-secondary));
 }
 
@@ -92,6 +94,15 @@
     top: initial;
     left: initial;
   }
+}
+
+.project__widgetLink {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 0;
 }
 
 [data-theme="dark"] .project__cover {
