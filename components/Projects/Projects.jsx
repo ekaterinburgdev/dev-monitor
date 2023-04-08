@@ -25,20 +25,6 @@ export default function Projects({ isWidgetVersion, projectsData }) {
       },
     }));
 
-  try {
-    sortedProjects = sortedProjects.sort((a, b) => {
-      const aDate = new Date(a.stats.repository.pushed_at);
-      const bDate = new Date(b.stats.repository.pushed_at);
-      if (bDate < aDate) {
-        return -1;
-      }
-      if (bDate > aDate) {
-        return 1;
-      }
-      return 0;
-    });
-  } catch (e) {}
-
   const selectedProject = sortedProjects.find((p) => p.git === openedProjectId);
 
   const onProjectClick = (project) => {
