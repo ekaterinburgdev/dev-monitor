@@ -35,11 +35,7 @@ export function Slots({ repository, ...project }) {
         </TabPanel>
 
         <TabPanel>
-          <DeadBranchesSlots
-            project={project}
-            url={project.url}
-            repositoryUrl={repository.html_url}
-          />
+          <DeadBranchesSlots project={project} vercel={project.vercel} />
         </TabPanel>
       </Tabs>
     </>
