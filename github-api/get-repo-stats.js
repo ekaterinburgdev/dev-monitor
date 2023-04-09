@@ -1,13 +1,12 @@
 import { Octokit } from "octokit";
-import projectsConfig from "../../projects.config";
+import projectsConfig from "../projects.config";
 
-export default async function handler(req, res) {
-  const { repo } = req.query;
+const octokit = new Octokit({
+  auth: process.env.GITHUB_TOKEN,
+});
+
+export default async function getRepoStats(repo) {
   const owner = projectsConfig.organization;
-
-  const octokit = new Octokit({
-    auth: process.env.GITHUB_TOKEN,
-  });
 
   const repoData = await octokit.request("GET /repos/{owner}/{repo}", {
     owner,
@@ -30,9 +29,10 @@ export default async function handler(req, res) {
     }
   );
 
-  res.status(200).json({
+
+  return {
     activity: activityData.data,
     contributors: contributorsData.data,
     repository: repoData.data,
-  });
+  };
 }

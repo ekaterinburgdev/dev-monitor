@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styles from "./Pulse.module.css";
 
 function getPercent({ min, max, value }) {
@@ -9,10 +10,18 @@ const X_FREQUENCY = 5;
 const GRAPH_HEIGHT = 50;
 
 export function Pulse({ activity, isDead }) {
-  if (!activity) return null;
+  const [color, setColor] = useState(null);
 
+  useEffect(() => {
+    const css = getComputedStyle(document.body);
+    const color = isDead
+      ? css.getPropertyValue("--text-color-danger")
+      : css.getPropertyValue("--activity-color-secondary");
+    setColor(color);
+  }, [isDead]);
+
+  if (!activity) return null;
   if (!activity.length) return null;
-  // return <div className={styles.pulse__error}>Api error</div>;
 
   const max = Math.max(...activity);
   const formatValues = activity.map((value) =>
@@ -26,11 +35,6 @@ export function Pulse({ activity, isDead }) {
 
   const width = X_FREQUENCY * activity.length;
   const height = GRAPH_HEIGHT + STROKE_WIDTH * 2;
-
-  const css = getComputedStyle(document.body);
-  const color = isDead
-    ? css.getPropertyValue("--text-color-danger")
-    : css.getPropertyValue("--activity-color-secondary");
 
   return (
     <svg
