@@ -1,11 +1,11 @@
 import { Dashboard } from "../components/Dashboard/Dashboard";
 import getAllRepoStats from "../github-api/get-all-repo-stats";
 
-function Home({ projectsData }) {
+function Home({ projectsData, isWidgetVersion = false }) {
   return (
     <Dashboard
       projectsData={projectsData}
-      isWidgetVersion={false}
+      isWidgetVersion={isWidgetVersion}
     />
   )
 }

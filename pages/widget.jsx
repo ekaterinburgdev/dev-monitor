@@ -17,7 +17,7 @@ export default function Widget({ projectsData }) {
   return (
     <Home
       projectsData={projectsData}
-      isWidgetVersion
+      isWidgetVersion={true}
     />
   );
 }
