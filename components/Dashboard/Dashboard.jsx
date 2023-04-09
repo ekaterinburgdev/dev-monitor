@@ -1,6 +1,5 @@
 import classNames from "classnames/bind";
 import { groupBy } from "lodash";
-import { useEffect, useState } from "react";
 import { Activity } from "../Activity/Activity";
 import { uniqBy } from "lodash";
 import { Contributions } from "../Contributions/Contributions";
@@ -12,66 +11,56 @@ import styles from "./Dashboard.module.css";
 const cx = classNames.bind(styles);
 
 export function Dashboard({ projectsData, isWidgetVersion }) {
-  const [activity, setActivity] = useState([]);
-  const [contributors, setContributors] = useState([]);
   const mainProjects = projectsData.filter((p) => !p.parentGit);
   const numberOfProjects = mainProjects.length;
   const numberOfRepos = projectsData.length;
 
-  useEffect(() => {
-    const activity = projectsData
-      .map((p) => p?.stats?.activity)
-      .filter(Boolean)
-      .flat();
+  const rawActivity = projectsData
+    .map((p) => p?.stats?.activity)
+    .filter(Boolean)
+    .flat();
 
-    const byWeek = groupBy(activity, (item) => item.week);
-    const byTotal = Object.entries(byWeek)
-      .map(([weekstamp, week]) => {
-        return {
-          week: weekstamp * 1000,
-          days: week
-            .map((w) => w.days)
-            .filter(Boolean)
-            .reduce((all, row) => {
-              row.forEach((cell, columlIndex) => {
-                all[columlIndex] = all[columlIndex] || 0;
-                all[columlIndex] += cell;
-              });
+  const byWeek = groupBy(rawActivity, (item) => item.week);
+  const byTotal = Object.entries(byWeek)
+    .map(([weekstamp, week]) => {
+      return {
+        week: weekstamp * 1000,
+        days: week
+          .map((w) => w.days)
+          .filter(Boolean)
+          .reduce((all, row) => {
+            row.forEach((cell, columlIndex) => {
+              all[columlIndex] = all[columlIndex] || 0;
+              all[columlIndex] += cell;
+            });
 
-              return all;
-            }, []),
-          total: week.reduce((all, item) => all + item.total, 0),
-        };
-      })
-      .filter((w) => w.week);
+            return all;
+          }, []),
+        total: week.reduce((all, item) => all + item.total, 0),
+      };
+    })
+    .filter((w) => w.week);
 
-    setActivity(
-      uniqBy(byTotal, (item) => commitDateFormatter.format(item.week))
-    );
-  }, [projectsData]);
+  const activity = uniqBy(byTotal, (item) => commitDateFormatter.format(item.week))
 
-  useEffect(() => {
-    const contributors = projectsData
-      .map((p) => p?.stats?.contributors)
-      .filter(Boolean)
-      .flat();
+  const rawContributors = projectsData
+    .map((p) => p?.stats?.contributors)
+    .filter(Boolean)
+    .flat();
 
-    const byLogin = groupBy(contributors, (item) => item.login);
-    const contributions = Object.keys(byLogin)
-      .map((login) => {
-        const user = byLogin[login];
-        return {
-          ...user[0],
-          contributions: user.reduce(
-            (all, item) => all + item.contributions,
-            0
-          ),
-        };
-      })
-      .sort((a, b) => b.contributions - a.contributions);
-
-    setContributors(contributions);
-  }, [projectsData]);
+  const byLogin = groupBy(rawContributors, (item) => item.login);
+  const contributors = Object.keys(byLogin)
+    .map((login) => {
+      const user = byLogin[login];
+      return {
+        ...user[0],
+        contributions: user.reduce(
+          (all, item) => all + item.contributions,
+          0
+        ),
+      };
+    })
+    .sort((a, b) => b.contributions - a.contributions);
 
   return (
     <div className={cx("projects")}>
