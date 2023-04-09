@@ -40,6 +40,9 @@ export function DeadBranchesSlots({ project, vercel }) {
             >
               {branch}, <TimeAgo date={date} />
             </a>
+
+            {slotUrl && <a href={slotUrl} target="_blank" rel="noreferrer" className={styles.slot__preview} aria-label="Branch preview"></a>}
+
             <div className={styles.slot__info}>
               {commitAuthor && (
                 <>
@@ -51,6 +54,7 @@ export function DeadBranchesSlots({ project, vercel }) {
                     <img
                       src={commitAuthorAvatar}
                       className={styles.slot__avatar}
+                      alt=""
                     />
                     {commitAuthor}
                   </a>
