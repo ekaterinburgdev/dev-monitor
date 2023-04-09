@@ -1,40 +1,22 @@
-import { useState, useEffect } from "react";
 import projectsConfig from "../projects.config";
 import { Dashboard } from "../components/Dashboard/Dashboard";
+import getRepoStats from "../github-api/get-repo-stats";
 
-function Home({ isWidgetVersion = false }) {
-  const [projects, setProjectsData] = useState(projectsConfig.projects);
-  const [loaded, setLoaded] = useState(false);
-
-  const init = async () => {
-    if (loaded) return;
-
-    const projectsData = await Promise.all(
-      projectsConfig.projects.map(async (project) => {
-        return {
-          ...project,
-          stats: await loadRepoInfo(project.git),
-        };
-      })
-    );
-
-    setProjectsData(projectsData);
-    setLoaded(true);
-  };
-
-  useEffect(() => {
-    init();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+function Home({ projectsData, isWidgetVersion = false }) {
   return (
-    <Dashboard isWidgetVersion={isWidgetVersion} projectsData={projects} />
-  );
+    <Dashboard isWidgetVersion={isWidgetVersion} projectsData={projectsData} />
+  )
 }
 
-async function loadRepoInfo(repo) {
-  const response = await fetch(`/api/repository?repo=${repo}`);
-  return await response.json();
+export async function getStaticProps() {
+  const projectsData = await Promise.all(
+    projectsConfig.projects.map(async (project) => ({
+      ...project,
+      stats: await getRepoStats(project.git),
+      revalidate: 3600
+    })));
+
+  return { props: { projectsData } }
 }
 
 export default Home;
