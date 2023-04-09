@@ -27,16 +27,6 @@ const projectsConfig = {
       vercel: "",
       links: [],
     },
-    {
-      parentGit: "transport",
-      title: "Transport CMS",
-      url: "https://transport-cms.ekaterinburg.io/",
-      icon: "/logos/transport.svg",
-      cover: "/covers/cover-transport.png",
-      git: "transport-cms",
-      vercel: "",
-      links: [],
-    },
 
     // Map
     {
@@ -63,16 +53,6 @@ const projectsConfig = {
       icon: "/logos/map.svg",
       cover: "/covers/cover-map.png",
       git: "map-cms",
-      vercel: "",
-      links: [],
-    },
-    {
-      parentGit: "map",
-      title: "Map Updater",
-      url: "",
-      icon: "/logos/map.svg",
-      cover: "/covers/cover-map.png",
-      git: "map-updater",
       vercel: "",
       links: [],
     },
