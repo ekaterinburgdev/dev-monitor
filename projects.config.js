@@ -5,7 +5,7 @@ const projectsConfig = {
     // Transport
     {
       title: "Transport Ecosystem",
-      url: "https://transport.ekaterinburg.io/",
+      url: "https://transport.ekaterinburg.io/map",
       icon: "/logos/transport.svg",
       cover: "/covers/cover-transport.png",
       git: "transport",
