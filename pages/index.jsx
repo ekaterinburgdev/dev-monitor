@@ -1,12 +1,18 @@
+import Head from 'next/head'
 import { Dashboard } from "../components/Dashboard/Dashboard";
 import getAllRepoStats from "../github-api/get-all-repo-stats";
 
 function Home({ projectsData, isWidgetVersion = false }) {
   return (
+    <>
+    <Head>
+      <base target='_blank'></base>
+    </Head>
     <Dashboard
       projectsData={projectsData}
       isWidgetVersion={isWidgetVersion}
     />
+    </>
   )
 }
 
